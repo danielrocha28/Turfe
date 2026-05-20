@@ -30,26 +30,30 @@
 </html>
 
 <script>
-    var cav1 = {
+    var cavalos = [
+    {
         nome: 'cavalo1',
         tempVoltas: []
-    };
-    var cav2 = {
+    },
+    {
         nome: 'cavalo2',
         tempVoltas: []
-    };
-    var cav3 = {
+    },
+    {
         nome: 'cavalo3',
         tempVoltas: []
-    };
-    var cav4 = {
+    },
+    {
         nome: 'cavalo4',
         tempVoltas: []
-    };
-    var cav5 = {
+    },
+    {
         nome: 'cavalo5',
         tempVoltas: []
-    };
+    }
+]
+
+    var todosAcumulos = [];
 
     function volta() {
 
@@ -67,16 +71,14 @@
         let acumulo4 = 0;
         let acumulo5 = 0;
         let voltas = 7;
-        let primeiro = false;
-        let segundo = false;
-        let terceiro = false;
+        div_msg.innerHTML = ''
 
-        console.log(cavalo1.toFixed(1))
+        // console.log(cavalo1.toFixed(1))
 
         // estrutura de repetição para sortear e armazenar
         for (let i = 0; i < voltas; i++) {
             // número aleatória para cada cavalo
-            cavalo1 = Number(Math.random() * (9 - 7) + 7); 
+            cavalo1 = Number(Math.random() * (9 - 7) + 7);
             cavalo2 = Number(Math.random() * (9 - 7) + 7);
             cavalo3 = Number(Math.random() * (9 - 7) + 7);
             cavalo4 = Number(Math.random() * (9 - 7) + 7);
@@ -96,16 +98,114 @@
             acumulo4 += Number(cavalo4.toFixed(1));
             acumulo5 += Number(cavalo5.toFixed(1));
 
-            div_msg.innerHTML += `<br> <br> <b> Volta ${i+1}</b> <br>
+            div_msg.innerHTML += `<br> <br> <b> Volta ${i + 1}</b> <br>
             <b>${cav1.nome}</b> - ${cav1.tempVoltas[i]} - ${acumulo1.toFixed(1)} min | 
              <b>${cav2.nome}</b> - ${cav2.tempVoltas[i]} - ${acumulo2.toFixed(1)} min |
              <b>${cav3.nome}</b> - ${cav3.tempVoltas[i]} - ${acumulo3.toFixed(1)} min |
              <b>${cav4.nome}</b> - ${cav4.tempVoltas[i]} - ${acumulo4.toFixed(1)} min |
              <b>${cav5.nome}</b> - ${cav5.tempVoltas[i]} - ${acumulo5.toFixed(1)} min `
         }
-        console.log(cav1.tempVoltas)
-        console.log(acumulo1)
 
+        // Subindo os acumulos no vetor (acumulo 1 = cavalo 1, acumulo 2 = cavalo 2)
+        todosAcumulos.push(acumulo1);
+        todosAcumulos.push(acumulo2);
+        todosAcumulos.push(acumulo3);
+        todosAcumulos.push(acumulo4);
+        todosAcumulos.push(acumulo5);
+
+        // for (let i = 0; i < todosAcumulos.length; i++) {
+        //     if (i != todosAcumulos.length - 1) {
+        //         if (todosAcumulos[i] < todosAcumulos[i + 1]) {
+
+        //         }
+        //     }
+
+        // }
+
+        // console.log(cav1.tempVoltas)
+        // console.log(acumulo1)
+        // console.log(todosAcumulos[0])
+
+        // criação podios do ranking 
+        let primeiro = acumulo1;
+        let segundo = acumulo2;
+        let terceiro = acumulo3;
+
+        let posicaoPrimerio = 0;
+        let posicaoSegundo = 0;
+        let posicaoTerceiro = 0;
+
+        //primeiro 
+        if (acumulo2 < primeiro) {
+            primeiro = acumulo2
+            // console.log(primeiro.toFixed(1))
+        } else if (acumulo2 < segundo) {
+            segundo = acumulo2
+            // console.log(segundo.toFixed(1))
+        } else if (acumulo2 < terceiro) {
+            terceiro = acumulo2
+            // console.log(terceiro.toFixed(1))
+        }  // segundo
+        if (acumulo1 < primeiro) {
+            primeiro = acumulo1
+            // console.log(primeiro.toFixed(1))
+        } else if (acumulo1 < segundo) {
+            segundo = acumulo1
+            // console.log(segundo.toFixed(1))
+        } else if (acumulo1 < terceiro) {
+            terceiro = acumulo1
+            // console.log(terceiro.toFixed(1))
+        } else
+            // terceiro
+            if (acumulo3 < primeiro) {
+                primeiro = acumulo3
+                // console.log(primeiro.toFixed(1))
+            } else if (acumulo3 < segundo) {
+                segundo = acumulo3
+                // console.log(segundo.toFixed(1))
+            } else if (acumulo3 < terceiro) {
+                terceiro = acumulo3
+                // console.log(terceiro.toFixed(1))
+            } else
+                // quarto
+                if (acumulo4 < primeiro) {
+                    primeiro = acumulo4
+                    // console.log(primeiro.toFixed(1))
+                } else if (acumulo4 < segundo) {
+                    segundo = acumulo4
+                    // console.log(segundo.toFixed(1))
+                } else if (acumulo4 < terceiro) {
+                    terceiro = acumulo4
+                    // console.log(terceiro.toFixed(1))
+                }
+        // quinto
+        if (acumulo5 < primeiro) {
+            primeiro = acumulo5
+            // console.log(primeiro.toFixed(1))
+        } else if (acumulo5 < segundo) {
+            segundo = acumulo5
+            // console.log(segundo.toFixed(1))
+        } else if (acumulo5 < terceiro) {
+            terceiro = acumulo5
+            // console.log(terceiro.toFixed(1))
+        }
+        console.log(ca)
+        console.log(segundo.toFixed(1))
+        console.log(terceiro.toFixed(1))
+
+        for(let i = 0; i < todosAcumulos; i++){
+            if(primeiro == todosAcumulos[i]) {
+                posicaoPrimerio = i;
+            }
+
+            if(segundo == todosAcumulos[i]) {
+                posicaoSegundo = i;
+            }
+
+            if(terceiro == todosAcumulos[i]) {
+                posicaoTerceiro = i;
+            }
+        }
     }
 
 
