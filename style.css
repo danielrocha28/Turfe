@@ -1,7 +1,11 @@
-body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.gif-animado {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 0%;
+width: 40%;
+
 }
 
 .image {
