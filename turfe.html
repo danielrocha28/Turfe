@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
     <title>Turfe</title>
+    <link rel="stylesheet" href="style-turfe.css">
 </head>
 
 <body>
+
     <h1>=================</h1>
-    <h1>TURFE - DAMAGIBE </h1>
+    <h1>TURFE - DAMAGIBE</h1>
     <h1>=================</h1>
 
-    <button onclick="volta()">DAR VOLTA</button>
+    <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
+
     <div id="div_msg"></div>
 
-    <div id="div_cav" class="gif-animado">
-    <img  src="./img/cavalo (1).gif" > <br>
-    <img  src="./img/cavalo (2).gif" > <br>
-    <img  src="./img/cavalo (3).gif" > <br>
-    <img  src="./img/cavalo (4).gif" > <br>
-    <img  src="./img/cavalo-branco.gif" >
+    <div id="div_cav">
+        <img src="./img/cavalo (1).gif"><br>
+        <img src="./img/cavalo (2).gif"><br>
+        <img src="./img/cavalo (3).gif"><br>
+        <img src="./img/cavalo (4).gif"><br>
+        <img src="./img/cavalo-branco.gif">
     </div>
 
 </body>
@@ -30,183 +31,121 @@
 </html>
 
 <script>
-    var cavalos = [
-    {
-        nome: 'cavalo1',
-        tempVoltas: []
-    },
-    {
-        nome: 'cavalo2',
-        tempVoltas: []
-    },
-    {
-        nome: 'cavalo3',
-        tempVoltas: []
-    },
-    {
-        nome: 'cavalo4',
-        tempVoltas: []
-    },
-    {
-        nome: 'cavalo5',
-        tempVoltas: []
-    }
-]
 
-    var todosAcumulos = [];
+    var cavalos = [
+        {
+            nome: 'Cavalo 1',
+            tempVoltas: []
+        },
+        {
+            nome: 'Cavalo 2',
+            tempVoltas: []
+        },
+        {
+            nome: 'Cavalo 3',
+            tempVoltas: []
+        },
+        {
+            nome: 'Cavalo 4',
+            tempVoltas: []
+        },
+        {
+            nome: 'Cavalo 5',
+            tempVoltas: []
+        }
+    ];
 
     function volta() {
 
-        div_msg.innerHTML = ``;
+        div_msg.innerHTML = '';
 
-        // criação de variavéis de sorteador
-        let cavalo1 = 0;
-        let cavalo2 = 0;
-        let cavalo3 = 0;
-        let cavalo4 = 0;
-        let cavalo5 = 0;
+        // resetando voltas anteriores
+        for (let i = 0; i < cavalos.length; i++) {
+            cavalos[i].tempVoltas = [];
+        }
+
+        let voltas = 7;
+
+        // acumuladores
         let acumulo1 = 0;
         let acumulo2 = 0;
         let acumulo3 = 0;
         let acumulo4 = 0;
         let acumulo5 = 0;
-        let voltas = 7;
-        div_msg.innerHTML = ''
 
-        // console.log(cavalo1.toFixed(1))
+        // referências
+        let cav1 = cavalos[0];
+        let cav2 = cavalos[1];
+        let cav3 = cavalos[2];
+        let cav4 = cavalos[3];
+        let cav5 = cavalos[4];
 
-        // estrutura de repetição para sortear e armazenar
         for (let i = 0; i < voltas; i++) {
-            // número aleatória para cada cavalo
-            cavalo1 = Number(Math.random() * (9 - 7) + 7);
-            cavalo2 = Number(Math.random() * (9 - 7) + 7);
-            cavalo3 = Number(Math.random() * (9 - 7) + 7);
-            cavalo4 = Number(Math.random() * (9 - 7) + 7);
-            cavalo5 = Number(Math.random() * (9 - 7) + 7);
 
-            // inserção no vetor 
-            cav1.tempVoltas.push(cavalo1.toFixed(1));
-            cav2.tempVoltas.push(cavalo2.toFixed(1));
-            cav3.tempVoltas.push(cavalo3.toFixed(1));
-            cav4.tempVoltas.push(cavalo4.toFixed(1));
-            cav5.tempVoltas.push(cavalo5.toFixed(1));
+            // sorteio entre 7 e 9
+            let tempo1 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            let tempo2 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
 
-            // inserção no acumlo
-            acumulo1 += Number(cavalo1.toFixed(1));
-            acumulo2 += Number(cavalo2.toFixed(1));
-            acumulo3 += Number(cavalo3.toFixed(1));
-            acumulo4 += Number(cavalo4.toFixed(1));
-            acumulo5 += Number(cavalo5.toFixed(1));
+            // salvando tempos
+            cav1.tempVoltas.push(tempo1);
+            cav2.tempVoltas.push(tempo2);
+            cav3.tempVoltas.push(tempo3);
+            cav4.tempVoltas.push(tempo4);
+            cav5.tempVoltas.push(tempo5);
 
-            div_msg.innerHTML += `<br> <br> <b> Volta ${i + 1}</b> <br>
-            <b>${cav1.nome}</b> - ${cav1.tempVoltas[i]} - ${acumulo1.toFixed(1)} min | 
-             <b>${cav2.nome}</b> - ${cav2.tempVoltas[i]} - ${acumulo2.toFixed(1)} min |
-             <b>${cav3.nome}</b> - ${cav3.tempVoltas[i]} - ${acumulo3.toFixed(1)} min |
-             <b>${cav4.nome}</b> - ${cav4.tempVoltas[i]} - ${acumulo4.toFixed(1)} min |
-             <b>${cav5.nome}</b> - ${cav5.tempVoltas[i]} - ${acumulo5.toFixed(1)} min `
+            // acumulando
+            acumulo1 += tempo1;
+            acumulo2 += tempo2;
+            acumulo3 += tempo3;
+            acumulo4 += tempo4;
+            acumulo5 += tempo5;
+
+            // exibindo
+            div_msg.innerHTML += `
+            
+            <b>Volta ${i + 1}</b> <br>
+
+            <b>${cav1.nome}</b> - ${tempo1} min | Total: ${acumulo1.toFixed(1)} min <br>
+
+            <b>${cav2.nome}</b> - ${tempo2} min | Total: ${acumulo2.toFixed(1)} min <br>
+
+            <b>${cav3.nome}</b> - ${tempo3} min | Total: ${acumulo3.toFixed(1)} min <br>
+
+            <b>${cav4.nome}</b> - ${tempo4} min | Total: ${acumulo4.toFixed(1)} min <br>
+
+            <b>${cav5.nome}</b> - ${tempo5} min | Total: ${acumulo5.toFixed(1)} min <br>
+
+            <hr>
+            `;
         }
 
-        // Subindo os acumulos no vetor (acumulo 1 = cavalo 1, acumulo 2 = cavalo 2)
-        todosAcumulos.push(acumulo1);
-        todosAcumulos.push(acumulo2);
-        todosAcumulos.push(acumulo3);
-        todosAcumulos.push(acumulo4);
-        todosAcumulos.push(acumulo5);
-
-        // for (let i = 0; i < todosAcumulos.length; i++) {
-        //     if (i != todosAcumulos.length - 1) {
-        //         if (todosAcumulos[i] < todosAcumulos[i + 1]) {
-
-        //         }
-        //     }
-
-        // }
-
-        // console.log(cav1.tempVoltas)
-        // console.log(acumulo1)
-        // console.log(todosAcumulos[0])
-
-        // criação podios do ranking 
-        let primeiro = acumulo1;
-        let segundo = acumulo2;
-        let terceiro = acumulo3;
-
-        let posicaoPrimerio = 0;
-        let posicaoSegundo = 0;
-        let posicaoTerceiro = 0;
-
-        //primeiro 
-        if (acumulo2 < primeiro) {
-            primeiro = acumulo2
-            // console.log(primeiro.toFixed(1))
-        } else if (acumulo2 < segundo) {
-            segundo = acumulo2
-            // console.log(segundo.toFixed(1))
-        } else if (acumulo2 < terceiro) {
-            terceiro = acumulo2
-            // console.log(terceiro.toFixed(1))
-        }  // segundo
-        if (acumulo1 < primeiro) {
-            primeiro = acumulo1
-            // console.log(primeiro.toFixed(1))
-        } else if (acumulo1 < segundo) {
-            segundo = acumulo1
-            // console.log(segundo.toFixed(1))
-        } else if (acumulo1 < terceiro) {
-            terceiro = acumulo1
-            // console.log(terceiro.toFixed(1))
-        } else
-            // terceiro
-            if (acumulo3 < primeiro) {
-                primeiro = acumulo3
-                // console.log(primeiro.toFixed(1))
-            } else if (acumulo3 < segundo) {
-                segundo = acumulo3
-                // console.log(segundo.toFixed(1))
-            } else if (acumulo3 < terceiro) {
-                terceiro = acumulo3
-                // console.log(terceiro.toFixed(1))
-            } else
-                // quarto
-                if (acumulo4 < primeiro) {
-                    primeiro = acumulo4
-                    // console.log(primeiro.toFixed(1))
-                } else if (acumulo4 < segundo) {
-                    segundo = acumulo4
-                    // console.log(segundo.toFixed(1))
-                } else if (acumulo4 < terceiro) {
-                    terceiro = acumulo4
-                    // console.log(terceiro.toFixed(1))
-                }
-        // quinto
-        if (acumulo5 < primeiro) {
-            primeiro = acumulo5
-            // console.log(primeiro.toFixed(1))
-        } else if (acumulo5 < segundo) {
-            segundo = acumulo5
-            // console.log(segundo.toFixed(1))
-        } else if (acumulo5 < terceiro) {
-            terceiro = acumulo5
-            // console.log(terceiro.toFixed(1))
-        }
-        console.log(ca)
-        console.log(segundo.toFixed(1))
-        console.log(terceiro.toFixed(1))
-
-        for(let i = 0; i < todosAcumulos; i++){
-            if(primeiro == todosAcumulos[i]) {
-                posicaoPrimerio = i;
+        // ranking
+        let ranking = [
+            {
+                nome: cav1.nome,
+                tempo: acumulo1
+            },
+            {
+                nome: cav2.nome,
+                tempo: acumulo2
+            },
+            {
+                nome: cav3.nome,
+                tempo: acumulo3
+            },
+            {
+                nome: cav4.nome,
+                tempo: acumulo4
+            },
+            {
+                nome: cav5.nome,
+                tempo: acumulo5
             }
+        ];
 
-            if(segundo == todosAcumulos[i]) {
-                posicaoSegundo = i;
-            }
-
-            if(terceiro == todosAcumulos[i]) {
-                posicaoTerceiro = i;
-            }
-        }
     }
-
 
 </script>

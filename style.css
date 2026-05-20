@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .gif-animado {
 display: flex;
 flex-direction: column;
