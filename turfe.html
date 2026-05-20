@@ -54,8 +54,10 @@
         let acumulo3 = 0;
         let acumulo4 = 0;
         let acumulo5 = 0;
-
         let voltas = 7;
+        let primeiro = false;
+        let segundo = false;
+        let terceiro = false;
 
         console.log(cavalo1.toFixed(1))
 
@@ -77,21 +79,20 @@
 
             // inserção no acumlo
             acumulo1 += Number(cavalo1.toFixed(1));
-            acumulo2 += Number(cavalo1.toFixed(1));
-            acumulo3 += Number(cavalo1.toFixed(1));
-            acumulo4 += Number(cavalo1.toFixed(1));
-            acumulo5 += Number(cavalo1.toFixed(1));
+            acumulo2 += Number(cavalo2.toFixed(1));
+            acumulo3 += Number(cavalo3.toFixed(1));
+            acumulo4 += Number(cavalo4.toFixed(1));
+            acumulo5 += Number(cavalo5.toFixed(1));
 
             div_msg.innerHTML += `<br> <br> <b> Volta ${i+1}</b> <br>
             <b>${cav1.nome}</b> - ${cav1.tempVoltas[i]} - ${acumulo1.toFixed(1)} min | 
-            // <b>${cav2.nome}</b> - ${cav2.tempVoltas[i]} - ${acumulo2.toFixed(1)} min |
-            // <b>${cav3.nome}</b> - ${cav3.tempVoltas[i]} - ${acumulo3.toFixed(1)} min |
-            // <b>${cav4.nome}</b> - ${cav4.tempVoltas[i]} - ${acumulo4.toFixed(1)} min |
-            // <b>${cav5.nome}</b> - ${cav5.tempVoltas[i]} - ${acumulo5.toFixed(1)} min `
+             <b>${cav2.nome}</b> - ${cav2.tempVoltas[i]} - ${acumulo2.toFixed(1)} min |
+             <b>${cav3.nome}</b> - ${cav3.tempVoltas[i]} - ${acumulo3.toFixed(1)} min |
+             <b>${cav4.nome}</b> - ${cav4.tempVoltas[i]} - ${acumulo4.toFixed(1)} min |
+             <b>${cav5.nome}</b> - ${cav5.tempVoltas[i]} - ${acumulo5.toFixed(1)} min `
         }
         console.log(cav1.tempVoltas)
         console.log(acumulo1)
-
 
     }
 
