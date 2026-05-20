@@ -21,28 +21,76 @@
 </html>
 
 <script>
-    // var cavalos = [
-    //     {Nome: 'Cabalo',
-    //     Volta: 10,8,7,7,8
-    //     },{Nome: 'Cabalo',
-    //     Volta: 10,8,7,7,8
-    //     }{Nome: 'Cabalo',
-    //     Volta: 10,8,7,7,8
-    //     }
-    // ]
+    var cav1 = {
+        nome: 'cavalo1',
+        tempVoltas: []
+    };
+    var cav2 = {
+        nome: 'cavalo2',
+        tempVoltas: []
+    };
+    var cav3 = {
+        nome: 'cavalo3',
+        tempVoltas: []
+    };
+    var cav4 = {
+        nome: 'cavalo4',
+        tempVoltas: []
+    };
+    var cav5 = {
+        nome: 'cavalo5',
+        tempVoltas: []
+    };
 
     function volta() {
-        let cavalo1 = Math.random() * (9 - 7) + 7;
-        let cavalo2 = Math.random() * (9 - 7) + 7;
-        let cavalo3 = Math.random() * (9 - 7) + 7;
+        // criiação de variavéis de sorteador
+        let cavalo1 = 0;
+        let cavalo2 = 0;
+        let cavalo3 = 0;
+        let cavalo4 = 0;
+        let cavalo5 = 0;
+        let acumulo1 = 0;
+        let acumulo2 = 0;
+        let acumulo3 = 0;
+        let acumulo4 = 0;
+        let acumulo5 = 0;
+
         let voltas = 7;
 
         console.log(cavalo1.toFixed(1))
 
+        // estrutura de repetição para sortear e armazenar
         for (let i = 0; i < voltas; i++) {
-            
-            
+            // número aleatória para cada cavalo
+            cavalo1 = Number(Math.random() * (9 - 7) + 7); 
+            cavalo2 = Number(Math.random() * (9 - 7) + 7);
+            cavalo3 = Number(Math.random() * (9 - 7) + 7);
+            cavalo4 = Number(Math.random() * (9 - 7) + 7);
+            cavalo5 = Number(Math.random() * (9 - 7) + 7);
+
+            // inserção no vetor 
+            cav1.tempVoltas.push(cavalo1.toFixed(1));
+            cav2.tempVoltas.push(cavalo2.toFixed(1));
+            cav3.tempVoltas.push(cavalo3.toFixed(1));
+            cav4.tempVoltas.push(cavalo4.toFixed(1));
+            cav5.tempVoltas.push(cavalo5.toFixed(1));
+
+            // inserção no acumlo
+            acumulo1 += Number(cavalo1.toFixed(1));
+            acumulo2 += Number(cavalo1.toFixed(1));
+            acumulo3 += Number(cavalo1.toFixed(1));
+            acumulo4 += Number(cavalo1.toFixed(1));
+            acumulo5 += Number(cavalo1.toFixed(1));
+
+            div_msg.innerHTML += `<br> <br> <b> Volta ${i+1}</b> <br>
+            <b>${cav1.nome}</b> - ${cav1.tempVoltas[i]} - ${acumulo1.toFixed(1)} min | 
+            // <b>${cav2.nome}</b> - ${cav2.tempVoltas[i]} - ${acumulo2.toFixed(1)} min |
+            // <b>${cav3.nome}</b> - ${cav3.tempVoltas[i]} - ${acumulo3.toFixed(1)} min |
+            // <b>${cav4.nome}</b> - ${cav4.tempVoltas[i]} - ${acumulo4.toFixed(1)} min |
+            // <b>${cav5.nome}</b> - ${cav5.tempVoltas[i]} - ${acumulo5.toFixed(1)} min `
         }
+        console.log(cav1.tempVoltas)
+        console.log(acumulo1)
 
 
     }
