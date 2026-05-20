@@ -1,5 +1,9 @@
 .gif-animado {
-background-image: url()
+background-image: url(./img/cavalo-branco.gif);
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50%;
 }
 
 .image {
@@ -12,3 +16,4 @@ background-image: url()
   height: auto;    
   display: block;  
 }
+

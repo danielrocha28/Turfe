@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <title>Trufe</title>
+    <title>Turfe</title>
 </head>
 
 <body>
@@ -16,6 +16,15 @@
 
     <button onclick="volta()">DAR VOLTA</button>
     <div id="div_msg"></div>
+
+    <div id="div_cav" class="gif-animado">
+    <img  src="./img/cavalo (1).gif" style="display: block;">
+    <img  src="./img/cavalo (2).gif" style="display: block;">
+    <img  src="./img/cavalo (3).gif" style="display: block;">
+    <img  src="./img/cavalo (4).gif" style="display: block;">
+    <img  src="./img/cavalo-branco.gif" style="display: block;">
+    </div>
+
 </body>
 
 </html>
@@ -43,7 +52,10 @@
     };
 
     function volta() {
-        // criiação de variavéis de sorteador
+
+        div_msg.innerHTML = ``;
+
+        // criação de variavéis de sorteador
         let cavalo1 = 0;
         let cavalo2 = 0;
         let cavalo3 = 0;
@@ -95,5 +107,6 @@
         console.log(acumulo1)
 
     }
+
 
 </script>
