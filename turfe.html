@@ -10,21 +10,13 @@
 
 <body>
 
-    <h1>=================</h1>
-    <h1>TURFE - DAMAGIBE</h1>
-    <h1>=================</h1>
+    <div class="logo">
+        <img src="./img/logo.png" alt="logo">
+    </div>
 
     <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
 
     <div id="div_msg"></div>
-
-    <div id="div_cav">
-        <img src="./img/cavalo (1).gif"><br>
-        <img src="./img/cavalo (2).gif"><br>
-        <img src="./img/cavalo (3).gif"><br>
-        <img src="./img/cavalo (4).gif"><br>
-        <img src="./img/cavalo-branco.gif">
-    </div>
 
 </body>
 
@@ -57,95 +49,114 @@
 
     function volta() {
 
-        div_msg.innerHTML = '';
+    div_msg.innerHTML = '';
 
-        // resetando voltas anteriores
-        for (let i = 0; i < cavalos.length; i++) {
-            cavalos[i].tempVoltas = [];
-        }
+    let voltas = 7;
 
-        let voltas = 7;
+    let acumulo1 = 0;
+    let acumulo2 = 0;
+    let acumulo3 = 0;
+    let acumulo4 = 0;
+    let acumulo5 = 0;
 
-        // acumuladores
-        let acumulo1 = 0;
-        let acumulo2 = 0;
-        let acumulo3 = 0;
-        let acumulo4 = 0;
-        let acumulo5 = 0;
+    let cav1 = cavalos[0];
+    let cav2 = cavalos[1];
+    let cav3 = cavalos[2];
+    let cav4 = cavalos[3];
+    let cav5 = cavalos[4];
 
-        // referências
-        let cav1 = cavalos[0];
-        let cav2 = cavalos[1];
-        let cav3 = cavalos[2];
-        let cav4 = cavalos[3];
-        let cav5 = cavalos[4];
+    // AQUI COMEÇA
+    let imagens = [
+        './img/cavalo (1).gif',
+        './img/cavalo (2).gif',
+        './img/cavalo (3).gif',
+        './img/cavalo (4).gif',
+        './img/cavalo-branco.gif'
+    ];
 
-        for (let i = 0; i < voltas; i++) {
+    for (let i = 0; i < voltas; i++) {
 
-            // sorteio entre 7 e 9
-            let tempo1 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo2 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+        let tempo1 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+        let tempo2 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+        let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+        let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+        let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
 
-            // salvando tempos
-            cav1.tempVoltas.push(tempo1);
-            cav2.tempVoltas.push(tempo2);
-            cav3.tempVoltas.push(tempo3);
-            cav4.tempVoltas.push(tempo4);
-            cav5.tempVoltas.push(tempo5);
+        acumulo1 += tempo1;
+        acumulo2 += tempo2;
+        acumulo3 += tempo3;
+        acumulo4 += tempo4;
+        acumulo5 += tempo5;
 
-            // acumulando
-            acumulo1 += tempo1;
-            acumulo2 += tempo2;
-            acumulo3 += tempo3;
-            acumulo4 += tempo4;
-            acumulo5 += tempo5;
+        div_msg.innerHTML += `
 
-            // exibindo
-            div_msg.innerHTML += `
-            
-            <b>Volta ${i + 1}</b> <br>
+        <div class="volta-box">
 
-            <b>${cav1.nome}</b> - ${tempo1} min | Total: ${acumulo1.toFixed(1)} min <br>
+            <h2>Volta ${i + 1}</h2>
 
-            <b>${cav2.nome}</b> - ${tempo2} min | Total: ${acumulo2.toFixed(1)} min <br>
+            <div class="linha-cavalo">
+                <img src="${imagens[0]}">
+                <p><b>${cav1.nome}</b> - ${tempo1} min | Total: ${acumulo1.toFixed(1)} min</p>
+            </div>
 
-            <b>${cav3.nome}</b> - ${tempo3} min | Total: ${acumulo3.toFixed(1)} min <br>
+            <div class="linha-cavalo">
+                <img src="${imagens[1]}">
+                <p><b>${cav2.nome}</b> - ${tempo2} min | Total: ${acumulo2.toFixed(1)} min</p>
+            </div>
 
-            <b>${cav4.nome}</b> - ${tempo4} min | Total: ${acumulo4.toFixed(1)} min <br>
+            <div class="linha-cavalo">
+                <img src="${imagens[2]}">
+                <p><b>${cav3.nome}</b> - ${tempo3} min | Total: ${acumulo3.toFixed(1)} min</p>
+            </div>
 
-            <b>${cav5.nome}</b> - ${tempo5} min | Total: ${acumulo5.toFixed(1)} min <br>
+            <div class="linha-cavalo">
+                <img src="${imagens[3]}">
+                <p><b>${cav4.nome}</b> - ${tempo4} min | Total: ${acumulo4.toFixed(1)} min</p>
+            </div>
+
+            <div class="linha-cavalo">
+                <img src="${imagens[4]}">
+                <p><b>${cav5.nome}</b> - ${tempo5} min | Total: ${acumulo5.toFixed(1)} min</p>
+            </div>
 
             <hr>
-            `;
+
+        </div>
+        `;
+    }
+}
+
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("start") === "true") {
+
+    document.querySelector('.button-turfe').style.display = 'none';
+
+    let contagem = 3;
+
+    div_msg.innerHTML = `<h1>${contagem}</h1>`;
+
+    let intervalo = setInterval(() => {
+
+        contagem--;
+
+        if (contagem > 0) {
+
+            div_msg.innerHTML = `<h1>${contagem}</h1>`;
+
+        } else if (contagem === 0) {
+
+            div_msg.innerHTML = `<h1>VAI!</h1>`;
+
+        } else {
+
+            clearInterval(intervalo);
+
+            div_msg.innerHTML = '';
+
+            volta();
         }
 
-        // ranking
-        let ranking = [
-            {
-                nome: cav1.nome,
-                tempo: acumulo1
-            },
-            {
-                nome: cav2.nome,
-                tempo: acumulo2
-            },
-            {
-                nome: cav3.nome,
-                tempo: acumulo3
-            },
-            {
-                nome: cav4.nome,
-                tempo: acumulo4
-            },
-            {
-                nome: cav5.nome,
-                tempo: acumulo5
-            }
-        ];
-
-    }
-
+    }, 1000);
+}
 </script>
