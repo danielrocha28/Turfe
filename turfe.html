@@ -149,8 +149,19 @@
                 div_msg.innerHTML = `<h1>VAI!</h1>`;
             } else {
                 clearInterval(intervalo);
-                div_msg.innerHTML = '';
-                volta();
+                
+                div_msg.innerHTML = `
+                    <div class="gif-pista-container">
+                        <img src="./img/cavalos.gif" alt="Cavalos correndo" class="gif-pista">
+                    </div>
+                `;
+
+                let tempoDoGif = 3000; 
+                
+                setTimeout(() => {
+                    div_msg.innerHTML = '';
+                    volta();
+                }, tempoDoGif);
             }
         }, 1000);
     }
