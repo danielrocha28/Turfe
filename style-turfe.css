@@ -44,61 +44,89 @@
    }
 
    /*estilizando a página de quantidade e rodadas*/
-  .paginaRodadas {
+   .paginaRodadas {
+       display: flex;
+       flex-direction: column;
+       align-content: center;
+       align-items: center;
+       justify-content: center;
+       font-size: 30px;
+       color: black;
+       gap: 5px;
+       padding: 20px;
+       height: 400px;
+   }
+
+   .quantidade {
+       background-color: #022a52;
+       width: 700px;
+       border-radius: 12px;
+       color: #fff;
+       box-sizing: border-box;
+       padding: 10px;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 10px;
+   }
+
+   .quantidade input {
+       width: 400px;
+       color: black;
+       font-size: inherit;
+       text-align: center;
+       border-radius: 7px;
+       border: none;
+       padding: 5px;
+   }
+
+   .btn_rodadas {
+       background-color: #004e9b;
+       border-radius: 10px;
+       border: 2px solid #fff;
+       color: #000;
+       font-size: 24px;
+       font-weight: 400;
+       padding: 10px 20px;
+       width: 200px;
+       cursor: pointer;
+       margin-top: 10px;
+   }
+
+   .btn_rodadas:hover {
+       background-color: rgba(14, 246, 246, 0.934);
+   }
+
+   #div_tela {
+       display: flex;
+       flex-direction: column;
+       height: 600px;
+   }
+
+   .btn_turfe {
+       font-family: "Anton", sans-serif;
+       border: 0;
+       border-radius: 40px;
+       font-weight: 600;
+       font-size: 35px;
+       color: black;
+       background-color: white;
+       width: 350px;
+       height: 85px;
+       align-self: center;
+       margin-top: 5px;
+       text-decoration: none;
+       box-sizing: border-box;
+       box-shadow: 0px 10px 30px black;
+   }
+
+   .btn_turfe:hover {
+       background-color: rgba(255, 255, 255, 0.768);
+   }
+
+   #div_final {
+    height: 50vh;
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
     justify-content: center;
-    font-size: 30px;
-    color: black;
-    gap: 5px;
-    padding: 20px;
-    height: 400px;
-}
-
-.quantidade {
-    background-color: #022a52;
-    width: 700px;
-    border-radius: 12px;
-    color: #fff;
-    box-sizing: border-box;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
-}
-
-.quantidade input {
-    width: 400px;
-    color: black;
-    font-size: inherit;
-    text-align: center;
-    border-radius: 7px;
-    border: none;
-    padding: 5px;
-}
-
-.btn_rodadas {
-    background-color: aqua;
-    border-radius: 10px;
-    border: 2px solid #fff;
-    color: #000;
-    font-size: 24px;
-    font-weight: 400;
-    padding: 10px 20px;
-    width: 200px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.btn_rodadas:hover {
-    background-color: rgba(14, 246, 246, 0.934);
-}
-
-#div_tela {
-    display: flex;
-    flex-direction: column;
-    height: 600px;
-}
+   }
