@@ -133,31 +133,31 @@
 
         
         function executarCorrida() {
-            let htmlCorrida = "";
+            let corrida = "";
 
             for (let i = 0; i < qtdRodadas; i++) {
-                htmlCorrida += `
+                corrida += `
                 <div class="volta-box">
                     <h2>Volta ${i + 1}</h2>`;
 
-                for (let c = 0; c < qtdCavalos; c++) {
+                for (let i = 0; i < qtdCavalos; i++) {
                     let tempoAleatorio = Number((Math.random() * (9 - 7) + 7).toFixed(1));
                     
                    
-                    cavalos[c].tempVoltas.push(tempoAleatorio);
-                    cavalos[c].total += tempoAleatorio;
+                    cavalos[i].tempVoltas.push(tempoAleatorio);
+                    cavalos[i].total += tempoAleatorio;
 
-                    htmlCorrida += `
+                    corrida += `
                     <div class="linha-cavalo" style="display:flex; align-items:center; gap: 15px;">
-                        <img src="${imagens[c]}" width="50px">
-                        <p><b>${cavalos[c].nome}</b> - ${tempoAleatorio} min | Total: ${cavalos[c].total.toFixed(1)} min</p>
+                        <img src="${imagens[i]}" width="50px">
+                        <p><b>${cavalos[i].nome}</b> - ${tempoAleatorio} min | Total: ${cavalos[i].total.toFixed(1)} min</p>
                     </div>`;
                 }
 
-                htmlCorrida += `<hr></div>`;
+                corrida += `<hr></div>`;
             }
 
-            div_msg.innerHTML = htmlCorrida;
+            div_msg.innerHTML = corrida;
             calcularRanking();
         }
 
@@ -238,21 +238,21 @@
                 }
             }
 
-            let htmlPodio = `<div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
-                                <h2>🏆 RESULTADO FINAL 🏆</h2>`;
+            let podio = `<div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
+                                <h2> RESULTADO FINAL </h2>`;
 
             for (let i = 0; i < ranking.length; i++) {
                 let colocacao = i + 1;
-                let emoji = i === 0 ? "1" : i === 1 ? "2" : "3";
+                let placar = i == 0 ? "1" : i == 1 ? "2" : "3";
                 
-                htmlPodio += `<p style="font-size: 18px;">
-                                <b>${colocacao}º Lugar ${emoji}:</b> ${ranking[i].nome} 
+                podio += `<p style="font-size: 18px;">
+                                <b>${colocacao}º Lugar ${placar}:</b> ${ranking[i].nome} 
                                 (${ranking[i].total.toFixed(1)} min)
                               </p>`;
             }
 
-            htmlPodio += `</div>`;
-            div_msg.innerHTML += htmlPodio;
+            podio += `</div>`;
+            div_msg.innerHTML += podio;
         }
     </script>
 </body>
