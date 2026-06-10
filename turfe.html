@@ -11,20 +11,24 @@
 <body>
 
     <div class="logo">
-        <img src="./img/logo.png" alt="logo">
+        <img src="./img/logo-turfe.svg" alt="logo">
     </div>
 
     <!--DIV_RODADAS é a div que informa a quantidade de cavalos e rodadas APENAS-->
     <!--Aviso: não coloquem o display como block se não não da pra usar o display flex no css-->
-    <div id="div_rodadas" style="display: flex;">
-        <p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
-        <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
-        <button onclick="adicionarRodadas()">Adicionar</button>
+    <div id="div_rodadas" style="display: flex;" class="paginaRodadas">
+        <!--Adicionando divs nos inputs para estilizar-->
+        <div class="quantidade">
+            <p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
+            <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
+            <div class="botaoRodadas"><button onclick="adicionarRodadas()">Adicionar</button></div>
+        </div>
     </div>
-
-    <div id="div_nomeCavalo" style="display: none;">
-        <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
-        <button onclick="adicionarNome()">Adicionar Nome</button>
+    <div id="div_tela">
+        <div id="div_nomeCavalo" style="display: none;">
+            <p class="qtds">Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
+            <button onclick="adicionarNome()">Adicionar Nome</button>
+        </div>
     </div>
 
     <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->

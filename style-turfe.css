@@ -1,59 +1,80 @@
    body {
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            background-color: #bb9797;
-            display: flex;
-            flex-direction: column;
-        }
+       padding: auto;
+       font-family: Arial, Helvetica, sans-serif;
+       text-align: center;
+       background-image: url('./img/home.png');
+       display: flex;
+       flex-direction: column;
+   }
 
-.logo {
-  width: 100%;
-  height: 30vh;
-   display: flex;
-  justify-content: center;
-}
+   .logo {
+       width: 100%;
+       height: 30vh;
+       display: flex;
+       justify-content: center;
+   }
 
 
- .volta-box {
-    margin-bottom: 30px;
-}
+   .volta-box {
+       margin-bottom: 30px;
+   }
 
-.linha-cavalo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+   .linha-cavalo {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 20px;
 
-    margin: 10px 0;
-}
+       margin: 10px 0;
+   }
 
-.linha-cavalo img {
-    width: 100px;
-}
+   .linha-cavalo img {
+       width: 100px;
+   }
 
-.linha-cavalo p {
-    font-size: 18px;
-    margin: 0;
-}
+   .linha-cavalo p {
+       font-size: 18px;
+       margin: 0;
+   }
 
-#div_msg h1 {
-    font-size: 120px;
-    color: white;
-    margin-top: 200px;
-}
+   #div_msg h1 {
+       font-size: 120px;
+       color: white;
+       margin-top: 200px;
+   }
 
-/*estilizando a página de quantidade e rodadas*/
-.paginaRodadas {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    color: black;
-    gap: 5px;
-    background-color: white;
-}
+   /*estilizando a página de quantidade e rodadas*/
+   .paginaRodadas {
+       display: flex;
+       flex-direction: column;
+       align-content: center;
+       align-items: center;
+       justify-content: center;
+       font-size: 30px;
+       color: black;
+       gap: 5px;
+       padding: 20px;
 
-.botaoRodadas {
-    font-size: 30px;
-    color: rgba(255, 255, 255, 0.768); 
-}
+
+   }
+
+   .quantidade {
+       background-color: #022a52;
+       width: 700px;
+       border-radius: 10px;
+       color: #fff;
+       box-sizing: border-box;
+       padding: 10px;
+   }
+
+   .quantidade input {
+       width: 500px;
+       color: black;
+       font-size: inherit;
+       align-items: center;
+   }
+
+   .botaoRodadas {
+       font-size: 30px;
+       color: rgba(255, 255, 255, 0.768);
+   }
