@@ -54,17 +54,17 @@
        color: black;
        gap: 5px;
        padding: 20px;
-
-
+       height: 400px;
    }
 
+   
    .quantidade {
        background-color: #022a52;
        width: 700px;
        border-radius: 10px;
        color: #fff;
        box-sizing: border-box;
-       padding: 10px;
+       padding-bottom: 20px;
    }
 
    .quantidade input {
@@ -72,9 +72,22 @@
        color: black;
        font-size: inherit;
        align-items: center;
+       text-align: center;
+       border-radius: 7px;
    }
 
-   .botaoRodadas {
-       font-size: 30px;
-       color: rgba(255, 255, 255, 0.768);
+   .btn_rodadas {
+    padding: 10px 5px;
+    background-color: aqua;
+    border-radius: 15px;
+    box-shadow:  2px 2px 0px #fff;
+    border: none;
+    
+
+   }
+
+   #div_tela {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
    }
