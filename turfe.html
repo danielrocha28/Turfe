@@ -54,14 +54,9 @@
     let acumulo5 = 0;
     let acumulo6 = 0;
 
-    let nomeCavalo = '';
 
-    let nomeCadastrado1 = false;
-    let nomeCadastrado2 = false;
-    let nomeCadastrado3 = false;
-    let nomeCadastrado4 = false;
-    let nomeCadastrado5 = false;
-    let nomeCadastrado6 = false;
+    let qtdRodadas = 0;
+    let nomeCavalo = '';
 
     var cavalos = [
         {
@@ -91,7 +86,7 @@
     ];
 
     function adicionarRodadas() {
-        let qtdRodadas = Number(ipt_qtdRodadas.value);
+         qtdRodadas = Number(ipt_qtdRodadas.value);
         let qtdCavalos = Number(ipt_qtdCavalos.value);
         let erros = false;
 
@@ -135,6 +130,7 @@
         if (cadastrados == qtdCavalos) {
             div_nomeCavalo.style.display = "none";
             div_final.style.display = "block";
+
         }
 
         console.log(cavalos);
@@ -142,7 +138,7 @@
 
     function volta() {
         div_msg.innerHTML = '';
-        let voltas = 7;
+        let voltas = qtdRodadas;
 
         let cav1 = cavalos[0];
         let cav2 = cavalos[1];
@@ -157,8 +153,9 @@
             './img/cavalo (2).gif',
             './img/cavalo (3).gif',
             './img/cavalo (4).gif',
-            './img/cavalo-branco.gif'
-            //falta o cavalo6
+            './img/cavalo (5).gif',
+            './img/cavalo (6).gif'
+        
         ];
 
         for (let i = 0; i < voltas; i++) {
@@ -215,7 +212,7 @@
             </div>
             
              <div class="linha-cavalo">
-                <img src="${imagens[4]}"> 
+                <img src="${imagens[5]}"> 
                 <p><b>${cav6.nome}</b> - ${tempo6} min | Total: ${acumulo6.toFixed(1)} min</p>
             </div>
             <hr>
