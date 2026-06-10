@@ -82,9 +82,9 @@
         }
     ];
 
-// var vtCavalo = [{
-//
-//  }]
+    // var vtCavalo = [{
+    //
+    //  }]
 
     function adicionarRodadas() {
         let qtdRodadas = Number(ipt_qtdRodadas.value);
@@ -107,24 +107,24 @@
 
     function adicionarNome() {
         let qtdCavalos = ipt_qtdCavalos.value;
-         nomeCavalo = ipt_nomeCavalo.value;
+        nomeCavalo = ipt_nomeCavalo.value;
 
         if (nomeCavalo == '') {
-        alert('Digite um nome!');
-        return; //substituir por else 
-    }
+            alert('Digite um nome!');
+            return; //substituir por else 
+        }
 
-     
+
         for (let i = 0; i <= qtdCavalos; i++) {
             cavalos[i].nome = nomeCavalo;
-            
+
             for (let i = qtdCavalos; i >= qtdCavalos; i--) {
                 if (i == 0) {
                     div_final.style.display = block
                 }
 
             }
-console.log(cavalos);
+            console.log(cavalos);
         }
 
 
