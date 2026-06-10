@@ -1,153 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turfe</title>
     <link rel="stylesheet" href="style-turfe.css">
 </head>
-
 <body>
 
     <div class="logo">
         <img src="./img/logo-turfe.svg" alt="logo">
     </div>
 
-    <!--DIV_RODADAS é a div que informa a quantidade de cavalos e rodadas APENAS-->
-    <!--Aviso: não coloquem o display como block se não não da pra usar o display flex no css-->
-    <div id="div_rodadas" style="display: flex;" class="paginaRodadas">
-        <!--Adicionando divs nos inputs para estilizar-->
+    <div id="div_rodadas" class="paginaRodadas" style="display: flex;">
         <div class="quantidade">
-            <p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
-            <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
-           <button onclick="adicionarRodadas()" class="btn_rodadas">Adicionar</button>
-        </div>
-    </div>
-    <div id="div_nomeCavalo" style="display: none" ; class="paginaRodadas">
-        <div class="quantidade">
-            <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
-            <button onclick="adicionarNome()" class="btn_rodadas">Adicionar Nome</button>
+            <p>Quantidade de cavalos (2 a 6): </p> 
+            <input type="number" id="ipt_qtdCavalos"> <br>
+            
+            <p>Quantidade de rodadas (2 a 10): </p> 
+            <input type="number" id="ipt_qtdRodadas"> <br>
+            
+            <button onclick="adicionarRodadas()" class="btn_rodadas">Avançar</button>
         </div>
     </div>
 
+    <div id="div_nomeCavalo" class="paginaRodadas" style="display: none;">
+        <div class="quantidade">
+            <h3 id="titulo_nome_cavalo">Informe o nome do 1º cavalo:</h3>
+            <input type="text" id="ipt_nomeCavalo"> <br>
+            <button onclick="adicionarNome()" class="btn_rodadas">Cadastrar Nome</button>
+        </div>
+    </div>
 
-    <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->
-    <div id="div_final" style="display: none;"> <!--deixar none DEPOIS QUE ACABAR DE CODAR-->
-        <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
-
+    <div id="div_final" style="display: none;">
+        <button onclick="iniciarContagem()" id="btn_iniciar" class="button-turfe">INICIAR CORRIDA</button>
         <div id="div_msg"></div>
     </div>
 
-</body>
+    <script>
+        let qtdCavalos = 0;
+        let qtdRodadas = 0;
+        let cavalos = []; // Array que vai guardar os objetos dos cavalos dinamicamente
 
-</html>
-
-<script>
-
-    // primeiro passo, confere se o cavalo 6 ta existindo em todos os lugares!!!!!
-
-    let acumulo1 = 0;
-    let acumulo2 = 0;
-    let acumulo3 = 0;
-    let acumulo4 = 0;
-    let acumulo5 = 0;
-    let acumulo6 = 0;
-
-
-    let qtdRodadas = 0;
-    let nomeCavalo = '';
-
-    var cavalos = [
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        },
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        },
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        },
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        },
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        },
-        {
-            nome: nomeCavalo,
-            tempVoltas: []
-        }
-    ];
-
-    function adicionarRodadas() {
-         qtdRodadas = Number(ipt_qtdRodadas.value);
-        let qtdCavalos = Number(ipt_qtdCavalos.value);
-        let erros = false;
-
-        if (qtdCavalos < 2 || qtdCavalos > 6) {
-            alert('A quantidade de cavalos deve estar entre 2 e 6');
-            erros = true;
-        }
-        if (qtdRodadas < 2 || qtdRodadas > 10) {
-            alert('A quantidade de rodadas deve estar entre 2 e 10');
-            erros = true;
-        }
-        if (erros == false) {
-            div_rodadas.style.display = 'none';
-            div_nomeCavalo.style.display = 'flex';
-        }
-    }
-
-    function adicionarNome() {
-        let qtdCavalos = Number(ipt_qtdCavalos.value);
-        let nomeCavalo = ipt_nomeCavalo.value;
-
-        if (nomeCavalo == '') {
-            alert('Digite um nome!');
-            return;
-        }
-
-        for (let i = 0; i < qtdCavalos; i++) {
-            if (!cavalos[i].nome) {
-                cavalos[i].nome = nomeCavalo;
-                break;
-            }
-        }
-
-        let cadastrados = 0;
-
-        for (let i = 0; i < qtdCavalos; i++) {
-            if (cavalos[i].nome) {
-                cadastrados++;
-            }
-        }
-        if (cadastrados == qtdCavalos) {
-            div_nomeCavalo.style.display = "none";
-            div_final.style.display = "block";
-
-        }
-
-        console.log(cavalos);
-    }
-
-    function volta() {
-        div_msg.innerHTML = '';
-        let voltas = qtdRodadas;
-
-        let cav1 = cavalos[0];
-        let cav2 = cavalos[1];
-        let cav3 = cavalos[2];
-        let cav4 = cavalos[3];
-        let cav5 = cavalos[4];
-        let cav6 = cavalos[5];
-
-        // AQUI COMEÇA
         let imagens = [
             './img/cavalo (1).gif',
             './img/cavalo (2).gif',
@@ -155,201 +49,156 @@
             './img/cavalo (4).gif',
             './img/cavalo (5).gif',
             './img/cavalo (6).gif'
-        
         ];
 
-        for (let i = 0; i < voltas; i++) {
+        // 1. Validações iniciais
+        function adicionarRodadas() {
+            qtdCavalos = Number(ipt_qtdCavalos.value);
+            qtdRodadas = Number(ipt_qtdRodadas.value);
 
-            let tempo1 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo2 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-            let tempo6 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            if (qtdCavalos < 2 || qtdCavalos > 6) {
+                alert('A quantidade de cavalos deve estar entre 2 e 6');
+                return; // Para a execução se der erro
+            }
+            if (qtdRodadas < 2 || qtdRodadas > 10) {
+                alert('A quantidade de rodadas deve estar entre 2 e 10');
+                return; // Para a execução se der erro
+            }
 
-            acumulo1 += tempo1;
-            acumulo2 += tempo2;
-            acumulo3 += tempo3;
-            acumulo4 += tempo4;
-            acumulo5 += tempo5;
-            acumulo6 += tempo6;
-
-            cav1.tempVoltas.push(tempo1);
-            cav2.tempVoltas.push(tempo2);
-            cav3.tempVoltas.push(tempo3);
-            cav4.tempVoltas.push(tempo4);
-            cav5.tempVoltas.push(tempo5);
-            cav6.tempVoltas.push(tempo6);
-
-            div_msg.innerHTML += `
-
-        <div class="volta-box">
-            <h2>Volta ${i + 1}</h2>
-
-            <div class="linha-cavalo">
-                <img src="${imagens[0]}">
-                <p><b>${cav1.nome}</b> - ${tempo1} min | Total: ${acumulo1.toFixed(1)} min</p>
-            </div>
-
-            <div class="linha-cavalo">
-                <img src="${imagens[1]}">
-                <p><b>${cav2.nome}</b> - ${tempo2} min | Total: ${acumulo2.toFixed(1)} min</p>
-            </div>
-
-            <div class="linha-cavalo">
-                <img src="${imagens[2]}">
-                <p><b>${cav3.nome}</b> - ${tempo3} min | Total: ${acumulo3.toFixed(1)} min</p>
-            </div>
-
-            <div class="linha-cavalo">
-                <img src="${imagens[3]}">
-                <p><b>${cav4.nome}</b> - ${tempo4} min | Total: ${acumulo4.toFixed(1)} min</p>
-            </div>
-
-            <div class="linha-cavalo">
-                <img src="${imagens[4]}">
-                <p><b>${cav5.nome}</b> - ${tempo5} min | Total: ${acumulo5.toFixed(1)} min</p>
-            </div>
-            
-             <div class="linha-cavalo">
-                <img src="${imagens[5]}"> 
-                <p><b>${cav6.nome}</b> - ${tempo6} min | Total: ${acumulo6.toFixed(1)} min</p>
-            </div>
-            <hr>
-        </div>
-        ` // (substitui o numero 4 por 5 quando tiver a imagem do cavalo) o cavalo 6 é a ultima div;
+            // Esconde a div 1 e mostra a div 2
+            div_rodadas.style.display = 'none';
+            div_nomeCavalo.style.display = 'flex';
+            titulo_nome_cavalo.innerHTML = `Informe o nome do 1º cavalo:`;
         }
 
-        calcularRanking();
-    }
+        // 2. Cadastro dos nomes
+        function adicionarNome() {
+            let nome = ipt_nomeCavalo.value;
 
-    const params = new URLSearchParams(window.location.search);
+            if (nome == '') {
+                alert('Digite um nome!');
+                return;
+            }
 
-    if (params.get("start") == "true") {
+            // Adiciona o cavalo ao array com seus dados zerados
+            cavalos.push({
+                nome: nome,
+                tempVoltas: [],
+                total: 0
+            });
 
-        document.querySelector('.button-turfe').style.display = 'none';
+            // Limpa o input para o próximo cavalo
+            ipt_nomeCavalo.value = '';
 
-        let contagem = 3;
-
-        div_msg.innerHTML = `<h1>${contagem}</h1>`;
-
-        let intervalo = setInterval(() => {
-
-            contagem--;
-
-            if (contagem > 0) {
-                div_msg.innerHTML = `<h1>${contagem}</h1>`;
-            } else if (contagem == 0) {
-                div_msg.innerHTML = `<h1>VAI!</h1>`;
+            // Verifica se já cadastrou todos
+            if (cavalos.length < qtdCavalos) {
+                titulo_nome_cavalo.innerHTML = `Informe o nome do ${cavalos.length + 1}º cavalo:`;
             } else {
-                clearInterval(intervalo);
-
-                div_msg.innerHTML = `
-                    <div class="gif-pista-container">
-                        <img src="./img/cavalos.gif" alt="Cavalos correndo" class="gif-pista">
-                    </div>
-                `;
-
-                let tempoDoGif = 3000;
-
-                setTimeout(() => {
-                    div_msg.innerHTML = '';
-                    volta();
-                }, tempoDoGif);
-            }
-        }, 1000);
-    }
-
-    function calcularRanking() {
-
-        let resultados = [{
-            nome: 'Cavalo 1',
-            total: acumulo1,
-            ultima: cavalos[0].tempVoltas[cavalos[0].tempVoltas.length - 1]
-        }, {
-            nome: 'Cavalo 2',
-            total: acumulo2,
-            ultima: cavalos[1].tempVoltas[cavalos[1].tempVoltas.length - 1]
-        }, {
-            nome: 'Cavalo 3',
-            total: acumulo3,
-            ultima: cavalos[2].tempVoltas[cavalos[2].tempVoltas.length - 1]
-        }, {
-            nome: 'Cavalo 4',
-            total: acumulo4,
-            ultima: cavalos[3].tempVoltas[cavalos[3].tempVoltas.length - 1]
-        }, {
-            nome: 'Cavalo 5',
-            total: acumulo5,
-            ultima: cavalos[4].tempVoltas[cavalos[4].tempVoltas.length - 1]
-        },
-        {
-            nome: 'Cavalo 6',
-            total: acumulo6,
-            ultima: cavalos[5].tempVoltas[cavalos[5].tempVoltas.length - 1]
-        }];
-        console.log(resultados)
-        let ranking = [];
-        let usados = [];
-
-        // primerio 
-        let menor = resultados[0].total;
-        for (let i = 1; i < resultados.length; i++) {
-            if (resultados[i].total < menor) {
-                menor = resultados[i].total;
+                // Terminou de cadastrar, vai para a etapa de corrida
+                div_nomeCavalo.style.display = "none";
+                div_final.style.display = "block";
             }
         }
-        let primeiros = [];
-        for (let i = 0; i < resultados.length; i++) {
-            if (resultados[i].total == menor) {
-                primeiros.push(resultados[i].nome);
-                usados.push(i);
-            }
-        }
-        ranking.push({ posicao: "1º", cavalos: primeiros });
 
-        // segundo  
-        let menor2 = 0;
-        for (let i = 0; i < resultados.length; i++) {
-            if (!usados.includes(i)) {
-                if (menor2 == 0 || resultados[i].total < menor2) {
-                    menor2 = resultados[i].total;
+        // 3. Contagem regressiva (Animação)
+        function iniciarContagem() {
+            btn_iniciar.style.display = 'none'; // Esconde o botão
+
+            let contagem = 3;
+            div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px;">${contagem}</h1>`;
+
+            let intervalo = setInterval(() => {
+                contagem--;
+
+                if (contagem > 0) {
+                    div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px;">${contagem}</h1>`;
+                } else if (contagem == 0) {
+                    div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px; color: green;">VAI!</h1>`;
+                } else {
+                    clearInterval(intervalo);
+                    
+                    // Coloca o gif da pista
+                    div_msg.innerHTML = `
+                        <div class="gif-pista-container" style="text-align:center;">
+                            <img src="./img/cavalos.gif" alt="Cavalos correndo" class="gif-pista">
+                        </div>
+                    `;
+
+                    // Depois de 3 segundos com o gif da pista, gera as voltas
+                    setTimeout(() => {
+                        div_msg.innerHTML = '';
+                        executarCorrida();
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        // 4. Executa a matemática e imprime as voltas
+        function executarCorrida() {
+            let htmlCorrida = "";
+
+            for (let i = 0; i < qtdRodadas; i++) {
+                htmlCorrida += `
+                <div class="volta-box">
+                    <h2>Volta ${i + 1}</h2>`;
+
+                // Faz um loop APENAS para a quantidade de cavalos escolhida
+                for (let c = 0; c < qtdCavalos; c++) {
+                    let tempoAleatorio = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+                    
+                    // Salva os dados no objeto do cavalo
+                    cavalos[c].tempVoltas.push(tempoAleatorio);
+                    cavalos[c].total += tempoAleatorio;
+
+                    // Cria a linha (div) de cada cavalo
+                    htmlCorrida += `
+                    <div class="linha-cavalo" style="display:flex; align-items:center; gap: 15px;">
+                        <img src="${imagens[c]}" width="50px">
+                        <p><b>${cavalos[c].nome}</b> - ${tempoAleatorio} min | Total: ${cavalos[c].total.toFixed(1)} min</p>
+                    </div>`;
+                }
+
+                htmlCorrida += `<hr></div>`;
+            }
+
+            div_msg.innerHTML = htmlCorrida;
+            calcularRanking();
+        }
+
+        // 5. Calcula quem ganhou
+        function calcularRanking() {
+            // Cria uma cópia do array de cavalos para não alterar a ordem original,
+            // e então usa a função .sort() nativa do JS para ordenar pelo tempo total
+            let ranking = [...cavalos].sort((a, b) => {
+                // Se o total for igual, desempata pela última volta
+                if (a.total.toFixed(1) === b.total.toFixed(1)) {
+                    let ultimaVoltaA = a.tempVoltas[a.tempVoltas.length - 1];
+                    let ultimaVoltaB = b.tempVoltas[b.tempVoltas.length - 1];
+                    return ultimaVoltaA - ultimaVoltaB; 
+                }
+                // Ordena do menor tempo para o maior tempo
+                return a.total - b.total;
+            });
+
+            // Imprime o pódio no HTML
+            let htmlPodio = `<div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
+                                <h2>🏆 RESULTADO FINAL 🏆</h2>`;
+
+            for (let i = 0; i < 3; i++) {
+                if (ranking[i]) { // Confere se o cavalo existe (caso tenham jogado com apenas 2 cavalos)
+                    let colocacao = i + 1;
+                    let emoji = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
+                    
+                    htmlPodio += `<p style="font-size: 18px;">
+                                    <b>${colocacao}º Lugar ${emoji}:</b> ${ranking[i].nome} 
+                                    (${ranking[i].total.toFixed(1)} min)
+                                  </p>`;
                 }
             }
+
+            htmlPodio += `</div>`;
+            div_msg.innerHTML += htmlPodio;
         }
-        let segundos = [];
-        for (let i = 0; i < resultados.length; i++) {
-            if (!usados.includes(i) && resultados[i].total == menor2) {
-                segundos.push(resultados[i].nome);
-                usados.push(i);
-            }
-        }
-        ranking.push({ posicao: "2º", cavalos: segundos });
-
-        // terceiro 
-        let menor3 = 0;
-        let indiceEscolhido = -1;
-        for (let i = 0; i < resultados.length; i++) {
-            if (!usados.includes(i)) {
-                if (menor3 == 0 || resultados[i].total < menor3) {
-                    menor3 = resultados[i].total;
-                    indiceEscolhido = i;
-                } else if (resultados[i].total == menor3) {
-                    // desempate ultima volta
-                    if (resultados[i].ultima < resultados[indiceEscolhido].ultima) {
-                        indiceEscolhido = i;
-                    }
-                }
-            }
-        }
-        ranking.push({ posicao: "3º", cavalos: [resultados[indiceEscolhido].nome] });
-
-
-        for (let i = 0; i < ranking.length; i++) {
-            div_msg.innerHTML += `<p>${ranking[i].posicao} lugar: ${ranking[i].cavalos} 
-            (${resultados.find(r => ranking[i].cavalos.includes(r.nome)).total.toFixed(1)} min)</p>`;
-        }
-
-    }
-
-</script>
+    </script>
+</body>
+</html>
