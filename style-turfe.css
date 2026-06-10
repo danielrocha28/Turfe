@@ -44,50 +44,57 @@
    }
 
    /*estilizando a página de quantidade e rodadas*/
-   .paginaRodadas {
-       display: flex;
-       flex-direction: column;
-       align-content: center;
-       align-items: center;
-       justify-content: center;
-       font-size: 30px;
-       color: black;
-       gap: 5px;
-       padding: 20px;
-       height: 400px;
-   }
+  .paginaRodadas {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: black;
+    gap: 5px;
+    padding: 20px;
+    height: 400px;
+}
 
-   
-   .quantidade {
-       background-color: #022a52;
-       width: 700px;
-       border-radius: 10px;
-       color: #fff;
-       box-sizing: border-box;
-       padding-bottom: 20px;
-   }
+.quantidade {
+    background-color: #022a52;
+    width: 700px;
+    border-radius: 12px;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
 
-   .quantidade input {
-       width: 500px;
-       color: black;
-       font-size: inherit;
-       align-items: center;
-       text-align: center;
-       border-radius: 7px;
-   }
-
-   .btn_rodadas {
-    padding: 10px 5px;
-    background-color: aqua;
-    border-radius: 15px;
-    box-shadow:  2px 2px 0px #fff;
+.quantidade input {
+    width: 400px;
+    color: black;
+    font-size: inherit;
+    text-align: center;
+    border-radius: 7px;
     border: none;
-    
+    padding: 5px;
+}
 
-   }
+.btn_rodadas {
+    background-color: aqua;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 10px 20px;
+    width: 200px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-   #div_tela {
-        display: flex;
-        flex-direction: column;
-        height: 400px;
-   }
+#div_tela {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
