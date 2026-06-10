@@ -165,35 +165,95 @@
             calcularRanking();
         }
 
-        // 5. Calcula quem ganhou
         function calcularRanking() {
-            // Cria uma cópia do array de cavalos para não alterar a ordem original,
-            // e então usa a função .sort() nativa do JS para ordenar pelo tempo total
-            let ranking = [...cavalos].sort((a, b) => {
-                // Se o total for igual, desempata pela última volta
-                if (a.total.toFixed(1) === b.total.toFixed(1)) {
-                    let ultimaVoltaA = a.tempVoltas[a.tempVoltas.length - 1];
-                    let ultimaVoltaB = b.tempVoltas[b.tempVoltas.length - 1];
-                    return ultimaVoltaA - ultimaVoltaB; 
-                }
-                // Ordena do menor tempo para o maior tempo
-                return a.total - b.total;
-            });
+            let resultados = cavalos; 
+            let ranking = [];
+            let usados = []; 
 
-            // Imprime o pódio no HTML
+            // --- 1º LUGAR ---
+            let menor1 = 9999; 
+            let indice1 = -1;
+
+            for (let i = 0; i < resultados.length; i++) {
+                if (resultados[i].total < menor1) {
+                    menor1 = resultados[i].total;
+                    indice1 = i;
+                } else if (resultados[i].total == menor1) {
+                    // Desempate pela última volta
+                    let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
+                    let ultimaAtual = resultados[indice1].tempVoltas[resultados[indice1].tempVoltas.length - 1];
+                    if (ultimaI < ultimaAtual) {
+                        indice1 = i;
+                    }
+                }
+            }
+            if (indice1 != -1) {
+                ranking.push(resultados[indice1]);
+                usados.push(indice1); 
+            }
+
+            if (resultados.length >= 2) {
+                let menor2 = 9999;
+                let indice2 = -1;
+
+                for (let i = 0; i < resultados.length; i++) {
+                    if (!usados.includes(i)) { 
+                        if (resultados[i].total < menor2) {
+                            menor2 = resultados[i].total;
+                            indice2 = i;
+                        } else if (resultados[i].total == menor2) {
+                        
+                            let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
+                            let ultimaAtual = resultados[indice2].tempVoltas[resultados[indice2].tempVoltas.length - 1];
+                            if (ultimaI < ultimaAtual) {
+                                indice2 = i;
+                            }
+                        }
+                    }
+                }
+                if (indice2 != -1) {
+                    ranking.push(resultados[indice2]);
+                    usados.push(indice2);
+                }
+            }
+
+            
+            if (resultados.length >= 3) {
+                let menor3 = 9999;
+                let indice3 = -1;
+
+                for (let i = 0; i < resultados.length; i++) {
+                    if (!usados.includes(i)) {
+                        if (resultados[i].total < menor3) {
+                            menor3 = resultados[i].total;
+                            indice3 = i;
+                        } else if (resultados[i].total == menor3) {
+                        
+                            let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
+                            let ultimaAtual = resultados[indice3].tempVoltas[resultados[indice3].tempVoltas.length - 1];
+                            if (ultimaI < ultimaAtual) {
+                                indice3 = i;
+                            }
+                        }
+                    }
+                }
+                if (indice3 != -1) {
+                    ranking.push(resultados[indice3]);
+                    usados.push(indice3);
+                }
+            }
+
             let htmlPodio = `<div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
                                 <h2>🏆 RESULTADO FINAL 🏆</h2>`;
 
-            for (let i = 0; i < 3; i++) {
-                if (ranking[i]) { // Confere se o cavalo existe (caso tenham jogado com apenas 2 cavalos)
-                    let colocacao = i + 1;
-                    let emoji = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
-                    
-                    htmlPodio += `<p style="font-size: 18px;">
-                                    <b>${colocacao}º Lugar ${emoji}:</b> ${ranking[i].nome} 
-                                    (${ranking[i].total.toFixed(1)} min)
-                                  </p>`;
-                }
+            for (let i = 0; i < ranking.length; i++) {
+                let colocacao = i + 1;
+                let emoji = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
+                
+                htmlPodio += `<p style="font-size: 18px;">
+                                <b>${colocacao}º Lugar ${emoji}:</b> ${ranking[i].nome} 
+                                (${ranking[i].total.toFixed(1)} min)
+                              </p>`;
             }
 
             htmlPodio += `</div>`;
