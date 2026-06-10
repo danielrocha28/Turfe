@@ -21,17 +21,17 @@
         <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
         <button onclick="adicionarRodadas()">Adicionar</button>
     </div>
-    
-    <div id="div_nomeCavalo" style="display: flex;">
+
+    <div id="div_nomeCavalo" style="display: none;">
         <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
-        <button onclick="adicionarNome()">Adicionar nome</button>
+        <button onclick="adicionarNome()">Adicionar Nome</button>
     </div>
 
     <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->
-    <div id="div_final" style="display: flex;"> <!--deixar none DEPOIS QUE ACABAR DE CODAR-->
-    <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
+    <div id="div_final" style="display: none;"> <!--deixar none DEPOIS QUE ACABAR DE CODAR-->
+        <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
 
-    <div id="div_msg"></div>
+        <div id="div_msg"></div>
     </div>
 
 </body>
@@ -51,30 +51,55 @@
 
     var cavalos = [
         {
-            nome: 'Cavalo 1',
+            nome: nomeCavalo,
             tempVoltas: []
         },
         {
-            nome: 'Cavalo 2',
+            nome: nomeCavalo,
             tempVoltas: []
         },
         {
-            nome: 'Cavalo 3',
+            nome: nomeCavalo,
             tempVoltas: []
         },
         {
-            nome: 'Cavalo 4',
+            nome: nomeCavalo,
             tempVoltas: []
         },
         {
-            nome: 'Cavalo 5',
+            nome: nomeCavalo,
             tempVoltas: []
         },
-         {
-            nome: 'Cavalo 6',
+        {
+            nome: nomeCavalo,
             tempVoltas: []
         }
     ];
+
+    function adicionarRodadas() {
+        let qtdRodadas = Number(ipt_qtdRodadas.value);
+        let qtdCavalos = Number(ipt_qtdCavalos.value);
+        let erros = false;
+
+        if(qtdCavalos < 2 || qtdCavalos > 6) {
+            alert('A quantidade de cavalos deve estar entre 2 e 6');
+            erros = true;
+        }
+        if(qtdRodadas < 2 || qtdRodadas > 10) {
+            alert('A quantidade de rodadas deve estar entre 2 e 10');
+            erros = true;
+        }
+        if(erros == false) {
+            div_rodadas.style.display = 'none';
+            div_nomeCavalo.style.display = 'flex';
+        }
+    }
+
+    function adicionarNome() {
+        let nomeCavalo = ipt_nomeCavalo.value;
+
+        
+    }
 
     function volta() {
         div_msg.innerHTML = '';
@@ -104,7 +129,7 @@
             let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
             let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
             let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-             let tempo6 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+            let tempo6 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
 
             acumulo1 += tempo1;
             acumulo2 += tempo2;
@@ -182,15 +207,15 @@
                 div_msg.innerHTML = `<h1>VAI!</h1>`;
             } else {
                 clearInterval(intervalo);
-                
+
                 div_msg.innerHTML = `
                     <div class="gif-pista-container">
                         <img src="./img/cavalos.gif" alt="Cavalos correndo" class="gif-pista">
                     </div>
                 `;
 
-                let tempoDoGif = 3000; 
-                
+                let tempoDoGif = 3000;
+
                 setTimeout(() => {
                     div_msg.innerHTML = '';
                     volta();
@@ -226,7 +251,7 @@
             nome: 'Cavalo 6',
             total: acumulo6,
             ultima: cavalos[5].tempVoltas[cavalos[5].tempVoltas.length - 1]
-        }  ];
+        }];
         console.log(resultados)
         let ranking = [];
         let usados = [];
