@@ -22,10 +22,11 @@
         <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
         <div class="botaoRodadas"><button onclick="adicionarRodadas()">Adicionar</button></div>
     </div>
-
-    <div id="div_nomeCavalo" style="display: none;">
-        <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
-        <button onclick="adicionarNome()">Adicionar Nome</button>
+    <div id="div_tela">
+        <div id="div_nomeCavalo" style="display: flex;">
+            <p class="qtds">Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
+            <button onclick="adicionarNome()">Adicionar Nome</button>
+        </div>
     </div>
 
     <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->
@@ -82,15 +83,15 @@
         let qtdCavalos = Number(ipt_qtdCavalos.value);
         let erros = false;
 
-        if(qtdCavalos < 2 || qtdCavalos > 6) {
+        if (qtdCavalos < 2 || qtdCavalos > 6) {
             alert('A quantidade de cavalos deve estar entre 2 e 6');
             erros = true;
         }
-        if(qtdRodadas < 2 || qtdRodadas > 10) {
+        if (qtdRodadas < 2 || qtdRodadas > 10) {
             alert('A quantidade de rodadas deve estar entre 2 e 10');
             erros = true;
         }
-        if(erros == false) {
+        if (erros == false) {
             div_rodadas.style.display = 'none';
             div_nomeCavalo.style.display = 'flex';
         }
@@ -99,7 +100,7 @@
     function adicionarNome() {
         let nomeCavalo = ipt_nomeCavalo.value;
 
-        
+
     }
 
     function volta() {
