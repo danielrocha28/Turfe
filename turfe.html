@@ -16,17 +16,15 @@
 
     <!--DIV_RODADAS é a div que informa a quantidade de cavalos e rodadas APENAS-->
     <!--Aviso: não coloquem o display como block se não não da pra usar o display flex no css-->
-    <div id="div_rodadas" style="display: flex;" class="paginaRodadas">
-        <!--Adicionando divs nos inputs para estilizar-->
-        <div class="quantidade"><p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
+    <div id="div_rodadas" style="display: flex;">
+        <p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
         <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
-        <div class="botaoRodadas"><button onclick="adicionarRodadas()">Adicionar</button></div>
+        <button onclick="adicionarRodadas()">Adicionar</button>
     </div>
-    <div id="div_tela">
-        <div id="div_nomeCavalo" style="display: flex;">
-            <p class="qtds">Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
-            <button onclick="adicionarNome()">Adicionar Nome</button>
-        </div>
+
+    <div id="div_nomeCavalo" style="display: none;">
+        <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
+        <button onclick="adicionarNome()">Adicionar Nome</button>
     </div>
 
     <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->
@@ -50,6 +48,8 @@
     let acumulo4 = 0;
     let acumulo5 = 0;
     let acumulo6 = 0;
+
+    let nomeCavalo = '';
 
     var cavalos = [
         {
@@ -78,6 +78,10 @@
         }
     ];
 
+// var vtCavalo = [{
+//
+//  }]
+
     function adicionarRodadas() {
         let qtdRodadas = Number(ipt_qtdRodadas.value);
         let qtdCavalos = Number(ipt_qtdCavalos.value);
@@ -98,7 +102,26 @@
     }
 
     function adicionarNome() {
-        let nomeCavalo = ipt_nomeCavalo.value;
+        let qtdCavalos = ipt_qtdCavalos.value;
+         nomeCavalo = ipt_nomeCavalo.value;
+
+        if (nomeCavalo == '') {
+        alert('Digite um nome!');
+        return; //substituir por else 
+    }
+
+     
+        for (let i = 0; i <= qtdCavalos; i++) {
+            cavalos[i].nome = nomeCavalo;
+            
+            for (let i = qtdCavalos; i >= qtdCavalos; i--) {
+                if (i == 0) {
+                    div_final.style.display = block
+                }
+
+            }
+console.log(cavalos);
+        }
 
 
     }
