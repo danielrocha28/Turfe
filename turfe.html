@@ -14,9 +14,25 @@
         <img src="./img/logo.png" alt="logo">
     </div>
 
+    <!--DIV_RODADAS é a div que informa a quantidade de cavalos e rodadas APENAS-->
+    <!--Aviso: não coloquem o display como block se não não da pra usar o display flex no css-->
+    <div id="div_rodadas" style="display: flex;">
+        <p>Quantidade de cavalos: </p> <input type="number" name="" id="ipt_qtdCavalos"> <br>
+        <p>Quantidade de rodadas: </p> <input type="number" name="" id="ipt_qtdRodadas"> <br>
+        <button onclick="adicionarRodadas()">Adicionar</button>
+    </div>
+    
+    <div id="div_nomeCavalo" style="display: flex;">
+        <p>Informe o nome do cavalo: </p> <input type="text" name="" id="ipt_nomeCavalo"> <br>
+        <button onclick="adicionarNome()">Adicionar nome</button>
+    </div>
+
+    <!--Essa parte só vai acontecer DEPOIS DA DIV RODADAS E DIV DOS NOMES!!!!-->
+    <div id="div_final" style="display: flex;"> <!--deixar none DEPOIS QUE ACABAR DE CODAR-->
     <button onclick="volta()" class="button-turfe">DAR VOLTA</button>
 
     <div id="div_msg"></div>
+    </div>
 
 </body>
 
@@ -206,11 +222,11 @@
             total: acumulo5,
             ultima: cavalos[4].tempVoltas[cavalos[4].tempVoltas.length - 1]
         },
-       /* {
+        {
             nome: 'Cavalo 6',
             total: acumulo6,
-            ultima: cavalos[4].tempVoltas[cavalos[4].tempVoltas.length - 1]
-        } */ ];
+            ultima: cavalos[5].tempVoltas[cavalos[5].tempVoltas.length - 1]
+        }  ];
         console.log(resultados)
         let ranking = [];
         let usados = [];
