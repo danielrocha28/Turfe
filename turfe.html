@@ -24,11 +24,14 @@
 
 <script>
 
+    // primeiro passo, confere se o cavalo 6 ta existindo em todos os lugares!!!!!
+
     let acumulo1 = 0;
     let acumulo2 = 0;
     let acumulo3 = 0;
     let acumulo4 = 0;
     let acumulo5 = 0;
+    let acumulo6 = 0;
 
     var cavalos = [
         {
@@ -50,6 +53,10 @@
         {
             nome: 'Cavalo 5',
             tempVoltas: []
+        },
+         {
+            nome: 'Cavalo 6',
+            tempVoltas: []
         }
     ];
 
@@ -62,6 +69,7 @@
         let cav3 = cavalos[2];
         let cav4 = cavalos[3];
         let cav5 = cavalos[4];
+        let cav6 = cavalos[5];
 
         // AQUI COMEÇA
         let imagens = [
@@ -70,6 +78,7 @@
             './img/cavalo (3).gif',
             './img/cavalo (4).gif',
             './img/cavalo-branco.gif'
+            //falta o cavalo6
         ];
 
         for (let i = 0; i < voltas; i++) {
@@ -79,18 +88,21 @@
             let tempo3 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
             let tempo4 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
             let tempo5 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+             let tempo6 = Number((Math.random() * (9 - 7) + 7).toFixed(1));
 
             acumulo1 += tempo1;
             acumulo2 += tempo2;
             acumulo3 += tempo3;
             acumulo4 += tempo4;
             acumulo5 += tempo5;
+            acumulo6 += tempo6;
 
             cav1.tempVoltas.push(tempo1);
             cav2.tempVoltas.push(tempo2);
             cav3.tempVoltas.push(tempo3);
             cav4.tempVoltas.push(tempo4);
             cav5.tempVoltas.push(tempo5);
+            cav6.tempVoltas.push(tempo6);
 
             div_msg.innerHTML += `
 
@@ -121,9 +133,14 @@
                 <img src="${imagens[4]}">
                 <p><b>${cav5.nome}</b> - ${tempo5} min | Total: ${acumulo5.toFixed(1)} min</p>
             </div>
+            
+             <div class="linha-cavalo">
+                <img src="${imagens[4]}"> 
+                <p><b>${cav6.nome}</b> - ${tempo6} min | Total: ${acumulo6.toFixed(1)} min</p>
+            </div>
             <hr>
         </div>
-        `;
+        ` // (substitui o numero 4 por 5 quando tiver a imagem do cavalo) o cavalo 6 é a ultima div;
         }
 
         calcularRanking();
@@ -188,7 +205,12 @@
             nome: 'Cavalo 5',
             total: acumulo5,
             ultima: cavalos[4].tempVoltas[cavalos[4].tempVoltas.length - 1]
-        }];
+        },
+       /* {
+            nome: 'Cavalo 6',
+            total: acumulo6,
+            ultima: cavalos[4].tempVoltas[cavalos[4].tempVoltas.length - 1]
+        } */ ];
         console.log(resultados)
         let ranking = [];
         let usados = [];
