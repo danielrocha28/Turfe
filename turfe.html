@@ -14,12 +14,10 @@
 
     <div id="div_rodadas" class="paginaRodadas" style="display: flex;">
         <div class="quantidade">
-            <p>Quantidade de cavalos: </p> 
-            <input type="number" id="ipt_qtdCavalos"> <br>
-            
-            <p>Quantidade de rodadas: </p> 
-            <input type="number" id="ipt_qtdRodadas"> <br>
-            
+            <p>Quantidade de cavalos: </p>
+            <input type="number" id="ipt_qtdCavalos"><br>
+            <p>Quantidade de rodadas: </p>
+            <input type="number" id="ipt_qtdRodadas"><br>
             <button onclick="adicionarRodadas()" class="btn_rodadas">Avançar</button>
         </div>
     </div>
@@ -27,7 +25,7 @@
     <div id="div_nomeCavalo" class="paginaRodadas" style="display: none;">
         <div class="quantidade">
             <h3 id="titulo_nome_cavalo">Informe o nome do 1º cavalo:</h3>
-            <input type="text" id="ipt_nomeCavalo"> <br>
+            <input type="text" id="ipt_nomeCavalo"><br>
             <button onclick="adicionarNome()" class="btn_rodadas">Cadastrar Nome</button>
         </div>
     </div>
@@ -40,7 +38,7 @@
     <script>
         let qtdCavalos = 0;
         let qtdRodadas = 0;
-        let cavalos = []; 
+        let cavalos = [];
 
         let imagens = [
             './img/cavalo (1).gif',
@@ -51,206 +49,183 @@
             './img/cavalo (6).gif'
         ];
 
-        // 1. Validações iniciais
+        const CORES = ['#FF4444', '#44AAFF', '#44DD44', '#FFAA00', '#FF44FF', '#00CCCC'];
+
         function adicionarRodadas() {
             qtdCavalos = Number(ipt_qtdCavalos.value);
             qtdRodadas = Number(ipt_qtdRodadas.value);
-
-            if (qtdCavalos < 2 || qtdCavalos > 6) {
-                alert('A quantidade de cavalos deve estar entre 2 e 6');
-                return; 
-            }
-            if (qtdRodadas < 2 || qtdRodadas > 10) {
-                alert('A quantidade de rodadas deve estar entre 2 e 10');
-                return;
-            }
-
-            
+            if (qtdCavalos < 2 || qtdCavalos > 6) { alert('A quantidade de cavalos deve estar entre 2 e 6'); return; }
+            if (qtdRodadas < 2 || qtdRodadas > 10) { alert('A quantidade de rodadas deve estar entre 2 e 10'); return; }
             div_rodadas.style.display = 'none';
             div_nomeCavalo.style.display = 'flex';
             titulo_nome_cavalo.innerHTML = `Informe o nome do 1º cavalo:`;
         }
 
-       
         function adicionarNome() {
             let nome = ipt_nomeCavalo.value;
-
-            if (nome == '') {
-                alert('Digite um nome!');
-                return;
-            }
-
-          
-            cavalos.push({
-                nome: nome,
-                tempVoltas: [],
-                total: 0
-            });
-
-           
+            if (nome == '') { alert('Digite um nome!'); return; }
+            cavalos.push({ nome, tempVoltas: [], total: 0 });
             ipt_nomeCavalo.value = '';
-
-           
             if (cavalos.length < qtdCavalos) {
                 titulo_nome_cavalo.innerHTML = `Informe o nome do ${cavalos.length + 1}º cavalo:`;
             } else {
-        
-                div_nomeCavalo.style.display = "none";
-                div_final.style.display = "block";
+                div_nomeCavalo.style.display = 'none';
+                div_final.style.display = 'block';
             }
         }
 
         function iniciarContagem() {
             btn_iniciar.style.display = 'none';
-
             let contagem = 3;
-            div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px;">${contagem}</h1>`;
+            div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;">${contagem}</h1>`;
 
             let intervalo = setInterval(() => {
                 contagem--;
-
                 if (contagem > 0) {
-                    div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px;">${contagem}</h1>`;
+                    div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;">${contagem}</h1>`;
                 } else if (contagem == 0) {
-                    div_msg.innerHTML = `<h1 style="text-align:center; font-size: 50px; color: green;">VAI!</h1>`;
+                    div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;color:green;">VAI!</h1>`;
                 } else {
                     clearInterval(intervalo);
-                    
-                    div_msg.innerHTML = `
-                        <div class="gif-pista-container" style="text-align:center;">
-                            <img src="./img/cavalos.gif" alt="Cavalos correndo" class="gif-pista">
-                        </div>
-                    `;
-
-                    
-                    setTimeout(() => {
-                        div_msg.innerHTML = '';
-                        executarCorrida();
-                    }, 3000);
+                    executarCorrida();
                 }
             }, 1000);
         }
 
-        
         function executarCorrida() {
-            let corrida = "";
 
-            for (let i = 0; i < qtdRodadas; i++) {
-                corrida += `
-                <div class="volta-box">
-                    <h2>Volta ${i + 1}</h2>`;
-
-                for (let i = 0; i < qtdCavalos; i++) {
-                    let tempoAleatorio = Number((Math.random() * (9 - 7) + 7).toFixed(1));
-                    
-                   
-                    cavalos[i].tempVoltas.push(tempoAleatorio);
-                    cavalos[i].total += tempoAleatorio;
-
-                    corrida += `
-                    <div class="linha-cavalo" style="display:flex; align-items:center; gap: 15px;">
-                        <img src="${imagens[i]}" width="50px">
-                        <p><b>${cavalos[i].nome}</b> - ${tempoAleatorio} min | Total: ${cavalos[i].total.toFixed(1)} min</p>
-                    </div>`;
+            for (let v = 0; v < qtdRodadas; v++) {
+                for (let c = 0; c < qtdCavalos; c++) {
+                    let tempo = Number((Math.random() * (9 - 7) + 7).toFixed(1));
+                    cavalos[c].tempVoltas.push(tempo);
+                    cavalos[c].total += tempo;
                 }
-
-                corrida += `<hr></div>`;
             }
 
-            div_msg.innerHTML = corrida;
-            calcularRanking();
+            animarCorrida(() => {
+                mostrarResultados();
+                calcularRanking();
+            });
+        }
+
+        function animarCorrida(callback) {
+            const DURACAO_MS = 7000;
+
+            div_msg.innerHTML = `
+                <div id="corrida-wrap" style="
+                    position: relative;
+                    width: 100%;
+                    max-width: 960px;
+                    margin: 0 auto;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 6px 24px rgba(0,0,0,.5);
+                ">
+                    <img id="pista-img" src="./img/pista.svg"
+                         style="width:100%; display:block;" alt="pista">
+                </div>
+            `;
+
+            const wrap     = document.getElementById('corrida-wrap');
+            const pistaImg = document.getElementById('pista-img');
+
+            function rodar() {
+                const W_WRAP = wrap.offsetWidth;
+                const H_WRAP = wrap.offsetHeight;
+
+                const X_INICIO = W_WRAP * 0.04;
+                const X_FIM    = W_WRAP * 0.88;
+                const Y_CENTRO = H_WRAP * 0.50;
+                const ESPACO   = H_WRAP * 0.055;
+                const W_GIF    = W_WRAP * 0.12;
+                const offset   = ((qtdCavalos - 1) * ESPACO) / 2;
+
+                const menorTempo = Math.min(...cavalos.map(c => c.total));
+
+                let imgs = [];
+                for (let i = 0; i < qtdCavalos; i++) {
+                    const img = document.createElement('img');
+                    img.src = imagens[i];
+                    img.style.position = 'absolute';
+                    img.style.width = W_GIF + 'px';
+                    img.style.top = (Y_CENTRO - offset + i * ESPACO) + 'px';
+                    img.style.left = X_INICIO + 'px';
+                    wrap.appendChild(img);
+                    imgs.push(img);
+                }
+
+                const inicio = performance.now();
+
+                function desenhar(agora) {
+                    const t = Math.min((agora - inicio) / DURACAO_MS, 1);
+
+                    for (let i = 0; i < qtdCavalos; i++) {
+                        const vel = menorTempo / cavalos[i].total;
+                        imgs[i].style.left = (X_INICIO + t * vel * (X_FIM - X_INICIO)) + 'px';
+                    }
+
+                    if (t < 1) requestAnimationFrame(desenhar);
+                    else setTimeout(callback, 700);
+                }
+
+                requestAnimationFrame(desenhar);
+            }
+
+            if (pistaImg.complete && pistaImg.naturalWidth > 0) {
+                rodar();
+            } else {
+                pistaImg.onload  = rodar;
+                pistaImg.onerror = () => { div_msg.innerHTML = ''; callback(); };
+            }
+        }
+
+        function mostrarResultados() {
+            let html = '';
+            for (let v = 0; v < qtdRodadas; v++) {
+                html += `<div class="volta-box"><h2>Volta ${v + 1}</h2>`;
+                for (let c = 0; c < qtdCavalos; c++) {
+                    html += `
+                        <div class="linha-cavalo" style="display:flex;align-items:center;gap:15px;">
+                            <img src="${imagens[c]}" width="50px">
+                            <p><b>${cavalos[c].nome}</b> — ${cavalos[c].tempVoltas[v]} min
+                               | Total: ${cavalos[c].total.toFixed(1)} min</p>
+                        </div>`;
+                }
+                html += `<hr></div>`;
+            }
+            div_msg.innerHTML = html;
         }
 
         function calcularRanking() {
-            let resultados = cavalos; 
-            let ranking = [];
-            let usados = []; 
-
-            let menor1 = 9999; 
-            let indice1 = -1;
-
-            for (let i = 0; i < resultados.length; i++) {
-                if (resultados[i].total < menor1) {
-                    menor1 = resultados[i].total;
-                    indice1 = i;
-                } else if (resultados[i].total == menor1) {
-            
-                    let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
-                    let ultimaAtual = resultados[indice1].tempVoltas[resultados[indice1].tempVoltas.length - 1];
-                    if (ultimaI < ultimaAtual) {
-                        indice1 = i;
+            function encontrarMenor(excluidos) {
+                let menor = Infinity, idx = -1;
+                cavalos.forEach((c, i) => {
+                    if (excluidos.includes(i)) return;
+                    const ultima = c.tempVoltas.at(-1);
+                    if (c.total < menor ||
+                        (c.total === menor && ultima < cavalos[idx].tempVoltas.at(-1))) {
+                        menor = c.total;
+                        idx = i;
                     }
-                }
-            }
-            if (indice1 != -1) {
-                ranking.push(resultados[indice1]);
-                usados.push(indice1); 
+                });
+                return idx;
             }
 
-            if (resultados.length >= 2) {
-                let menor2 = 9999;
-                let indice2 = -1;
-
-                for (let i = 0; i < resultados.length; i++) {
-                    if (!usados.includes(i)) { 
-                        if (resultados[i].total < menor2) {
-                            menor2 = resultados[i].total;
-                            indice2 = i;
-                        } else if (resultados[i].total == menor2) {
-                        
-                            let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
-                            let ultimaAtual = resultados[indice2].tempVoltas[resultados[indice2].tempVoltas.length - 1];
-                            if (ultimaI < ultimaAtual) {
-                                indice2 = i;
-                            }
-                        }
-                    }
-                }
-                if (indice2 != -1) {
-                    ranking.push(resultados[indice2]);
-                    usados.push(indice2);
-                }
+            const usados  = [];
+            const ranking = [];
+            const total   = Math.min(3, cavalos.length);
+            for (let p = 0; p < total; p++) {
+                const idx = encontrarMenor(usados);
+                if (idx !== -1) { ranking.push(cavalos[idx]); usados.push(idx); }
             }
 
-            
-            if (resultados.length >= 3) {
-                let menor3 = 9999;
-                let indice3 = -1;
-
-                for (let i = 0; i < resultados.length; i++) {
-                    if (!usados.includes(i)) {
-                        if (resultados[i].total < menor3) {
-                            menor3 = resultados[i].total;
-                            indice3 = i;
-                        } else if (resultados[i].total == menor3) {
-                        
-                            let ultimaI = resultados[i].tempVoltas[resultados[i].tempVoltas.length - 1];
-                            let ultimaAtual = resultados[indice3].tempVoltas[resultados[indice3].tempVoltas.length - 1];
-                            if (ultimaI < ultimaAtual) {
-                                indice3 = i;
-                            }
-                        }
-                    }
-                }
-                if (indice3 != -1) {
-                    ranking.push(resultados[indice3]);
-                    usados.push(indice3);
-                }
-            }
-
-            let podio = `<div style="margin-top: 30px; padding: 20px; background-color: #f0f0f0; border-radius: 10px;">
-                                <h2> RESULTADO FINAL </h2>`;
-
-            for (let i = 0; i < ranking.length; i++) {
-                let colocacao = i + 1;
-                let placar = i == 0 ? "1" : i == 1 ? "2" : "3";
-                
-                podio += `<p style="font-size: 18px;">
-                                <b>${colocacao}º Lugar ${placar}:</b> ${ranking[i].nome} 
-                                (${ranking[i].total.toFixed(1)} min)
-                              </p>`;
-            }
-
+            const medalhas = ['1', '2', '3'];
+            let podio = `<div style="margin-top:30px;padding:20px;background:#f0f0f0;border-radius:10px;">
+                            <h2>RESULTADO FINAL</h2>`;
+            ranking.forEach((c, i) => {
+                podio += `<p style="font-size:18px;"><b>${i+1}º Lugar:</b> 
+                           ${c.nome} (${c.total.toFixed(1)} min)</p>`;
+            });
             podio += `</div>`;
             div_msg.innerHTML += podio;
         }
