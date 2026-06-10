@@ -47,4 +47,11 @@
     justify-content: center;
     font-size: 30px;
     color: black;
+    gap: 5px;
+    background-color: white;
+}
+
+.botaoRodadas {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.768); 
 }
