@@ -141,6 +141,43 @@
        font-weight: bold;
    }
 
+   .podio-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; 
+        gap: 15px;
+        margin-top: 10px;
+        height: 350px; 
+        overflow: hidden; 
+    }
+    .degrau {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        animation: subirPodio 1.5s ease-out forwards; 
+        transform: translateY(100%);
+    }
+
+    .degrau p { margin: 5px 0; font-size: 20px; text-shadow: 1px 1px 2px black; }
+    .degrau img { width: 80px; margin-bottom: 5px; }
+
+    .degrau-1 { height: 180px; background-color: #FFD700; animation-delay: 4.5s; } 
+    .degrau-2 { height: 130px; background-color: #C0C0C0; animation-delay: 3.0s; } 
+    .degrau-3 { height: 110px; background-color: #CD7F32; animation-delay: 1.0s; }  
+
+    .posicao-numero { font-size: 45px; margin-top: auto; padding-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+
+    @keyframes subirPodio {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
 
 .tabela-resultados {
     width: 100%;
