@@ -70,8 +70,14 @@
 
             let indiceCavalo = cavalos.length; 
 
+            div_listaCavalos.style.display='flex';
+            div_listaCavalos.style.flexDirection='row';
+            div_listaCavalos.style.flexWrap='wrap';
+            div_listaCavalos.style.justifyContent='flex-start';
+            div_listaCavalos.style.gap='15px';
+
            div_listaCavalos.innerHTML += `
-                <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start"; flex-wrap: wrap;>
                     <img src="${imagens[indiceCavalo]}" style="width: 80px;">
                     <p style="color: white; font-size: 24px; margin-top: 10px; font-weight: bold;">${nome}</p>
                 </div>
