@@ -12,7 +12,7 @@
         <img src="./img/logo-turfe.svg" alt="logo">
     </div>
 
-    <div id="div_rodadas" class="paginaRodadas" style="display: flex;">
+   <div id="div_rodadas" class="paginaRodadas" style="display: flex;">
         <div class="quantidade">
             <p>Quantidade de cavalos: </p>
             <input type="number" id="ipt_qtdCavalos"><br>
@@ -27,6 +27,9 @@
             <h3 id="titulo_nome_cavalo">Informe o nome do 1º cavalo:</h3>
             <input type="text" id="ipt_nomeCavalo"><br>
             <button onclick="adicionarNome()" class="btn_rodadas">Cadastrar Nome</button>
+        </div>
+        
+        <div id="div_listaCavalos" class="lista-cavalos">
         </div>
     </div>
 
@@ -61,16 +64,30 @@
             titulo_nome_cavalo.innerHTML = `Informe o nome do 1º cavalo:`;
         }
 
-        function adicionarNome() {
+    function adicionarNome() {
             let nome = ipt_nomeCavalo.value;
             if (nome == '') { alert('Digite um nome!'); return; }
+
+            let indiceCavalo = cavalos.length; 
+
+           div_listaCavalos.innerHTML += `
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="${imagens[indiceCavalo]}" style="width: 80px;">
+                    <p style="color: white; font-size: 24px; margin-top: 10px; font-weight: bold;">${nome}</p>
+                </div>
+            `;
             cavalos.push({ nome, tempVoltas: [], total: 0 });
             ipt_nomeCavalo.value = '';
+
             if (cavalos.length < qtdCavalos) {
                 titulo_nome_cavalo.innerHTML = `Informe o nome do ${cavalos.length + 1}º cavalo:`;
             } else {
-                div_nomeCavalo.style.display = 'none';
-                div_final.style.display = 'block';
+                titulo_nome_cavalo.innerHTML = `Todos os cavalos cadastrados!`;
+                
+                setTimeout(() => {
+                    div_nomeCavalo.style.display = 'none';
+                    div_final.style.display = 'block'; 
+                }, 3000);
             }
         }
 
@@ -84,7 +101,7 @@
                 if (contagem > 0) {
                     div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;">${contagem}</h1>`;
                 } else if (contagem == 0) {
-                    div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;color:green;">VAI!</h1>`;
+                    div_msg.innerHTML = `<h1 style="text-align:center;font-size:50px;color:white;">VAI!</h1>`;
                 } else {
                     clearInterval(intervalo);
                     executarCorrida();
