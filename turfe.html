@@ -202,22 +202,52 @@
             }
         }
 
-        function mostrarResultados() {
-            let html = '';
-            for (let v = 0; v < qtdRodadas; v++) {
-                html += `<div class="volta-box"><h2>Volta ${v + 1}</h2>`;
-                for (let c = 0; c < qtdCavalos; c++) {
-                    html += `
-                        <div class="linha-cavalo" style="display:flex;align-items:center;gap:15px;">
-                            <img src="${imagens[c]}" width="50px">
-                            <p><b>${cavalos[c].nome}</b> — ${cavalos[c].tempVoltas[v]} min
-                               | Total: ${cavalos[c].total.toFixed(1)} min</p>
-                        </div>`;
-                }
-                html += `<hr></div>`;
-            }
-            div_msg.innerHTML = html;
+   function mostrarResultados() {
+    let html = `
+        <div class="volta-box">
+            <h2>Tempos da Corrida</h2>
+
+            <table class="tabela-resultados">
+                <tr>
+                    <th>Volta</th>
+    `;
+
+    
+    for (let c = 0; c < qtdCavalos; c++) {
+        html += `<th>${cavalos[c].nome}</th>`;
+    }
+
+    html += `</tr>`;
+
+    
+    for (let v = 0; v < qtdRodadas; v++) {
+        html += `<tr>`;
+        html += `<td><b>Volta ${v + 1}</b></td>`;
+
+        for (let c = 0; c < qtdCavalos; c++) {
+            html += `<td>${cavalos[c].tempVoltas[v].toFixed(1)} min</td>`;
         }
+
+        html += `</tr>`;
+    }
+
+    html += `
+        <tr class="linha-total">
+            <td><b>Total</b></td>
+    `;
+
+    for (let c = 0; c < qtdCavalos; c++) {
+        html += `<td><b>${cavalos[c].total.toFixed(1)} min</b></td>`;
+    }
+
+    html += `
+            </tr>
+        </table>
+        </div>
+    `;
+
+    div_msg.innerHTML = html;
+}
 
         function calcularRanking() {
             function encontrarMenor(excluidos) {

@@ -140,3 +140,35 @@
        color: white;
        font-weight: bold;
    }
+
+
+.tabela-resultados {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabela-resultados th {
+    background: #004e9b;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.tabela-resultados td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.tabela-resultados tr:nth-child(even) {
+    background-color: #f5f8fc;
+}
+
+.linha-total {
+    background-color: #022a52 !important;
+    color: white;
+    font-size: 18px;
+}
