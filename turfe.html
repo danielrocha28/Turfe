@@ -5,6 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turfe</title>
     <link rel="stylesheet" href="style-turfe.css">
+    
+    <style>
+        .podio-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; 
+            gap: 15px;
+            margin-top: 20px;
+            height: 240px; 
+            overflow: hidden;
+        }
+
+        .degrau {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            /* Faz o pódio nascer de baixo para cima */
+            animation: subirPodio 1.5s ease-out forwards; 
+            transform: translateY(100%); 
+        }
+
+        .degrau p { 
+            margin: 4px 0; 
+            font-size: 16px; 
+            text-shadow: 1px 1px 2px black; 
+        }
+        
+        .degrau img { 
+            width: 75px; 
+            margin-bottom: 5px; 
+        }
+
+        /* Cores, alturas e tempos de suspense de cada degrau */
+        .degrau-1 { height: 180px; background-color: #FFD700; animation-delay: 1.2s; } /* Ouro */
+        .degrau-2 { height: 135px; background-color: #C0C0C0; animation-delay: 0.6s; } /* Prata */
+        .degrau-3 { height: 95px; background-color: #CD7F32; animation-delay: 0.1s; }  /* Bronze */
+
+        .posicao-numero { 
+            font-size: 35px; 
+            margin-top: auto; 
+            padding-bottom: 8px; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
+        }
+
+        /* Animação do transform */
+        @keyframes subirPodio {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
@@ -38,10 +93,6 @@
         <div id="div_msg"></div>
     </div>
 
-    <div id="div_tela_corrida" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-        <div id="div_msg_corrida"></div>
-    </div>
-
     <script>
         let qtdCavalos = 0;
         let qtdRodadas = 0;
@@ -68,7 +119,7 @@
             titulo_nome_cavalo.innerHTML = `Informe o nome do 1º cavalo:`;
         }
 
-    function adicionarNome() {
+        function adicionarNome() {
             let nome = ipt_nomeCavalo.value;
             if (nome == '') { alert('Digite um nome!'); return; }
 
@@ -80,8 +131,8 @@
             div_listaCavalos.style.justifyContent='flex-start';
             div_listaCavalos.style.gap='15px';
 
-           div_listaCavalos.innerHTML += `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start"; flex-wrap: wrap;>
+            div_listaCavalos.innerHTML += `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; flex-wrap: wrap;">
                     <img src="${imagens[indiceCavalo]}" style="width: 80px;">
                     <p style="color: white; font-size: 24px; margin-top: 10px; font-weight: bold;">${nome}</p>
                 </div>
@@ -129,11 +180,9 @@
             }
 
             animarCorrida(() => {
-                div_msg.innerHTML = ''; 
-                
-                calcularRanking();
-                
-                mostrarResultados();
+                div_msg.innerHTML = ''; // 1. Limpa o GIF da pista da tela
+                calcularRanking();      // 2. Monta o Pódio no topo primeiro
+                mostrarResultados();    // 3. Acrescenta a tabela logo abaixo
             });
         }
 
@@ -208,54 +257,53 @@
             }
         }
 
-   function mostrarResultados() {
-    let html = `
-        <div class="volta-box">
-            <h2>Tempos da Corrida</h2>
+        function mostrarResultados() {
+            let html = `
+                <div class="volta-box" style="margin-top: 30px;">
+                    <h2>Tempos da Corrida</h2>
 
-            <table class="tabela-resultados">
-                <tr>
-                    <th>Volta</th>
-    `;
+                    <table class="tabela-resultados">
+                        <tr>
+                            <th>Volta</th>
+            `;
 
-    
-    for (let c = 0; c < qtdCavalos; c++) {
-        html += `<th>${cavalos[c].nome}</th>`;
-    }
+            for (let c = 0; c < qtdCavalos; c++) {
+                html += `<th>${cavalos[c].nome}</th>`;
+            }
 
-    html += `</tr>`;
+            html += `</tr>`;
 
-    
-    for (let v = 0; v < qtdRodadas; v++) {
-        html += `<tr>`;
-        html += `<td><b>Volta ${v + 1}</b></td>`;
+            for (let v = 0; v < qtdRodadas; v++) {
+                html += `<tr>`;
+                html += `<td><b>Volta ${v + 1}</b></td>`;
 
-        for (let c = 0; c < qtdCavalos; c++) {
-            html += `<td>${cavalos[c].tempVoltas[v].toFixed(1)} min</td>`;
+                for (let c = 0; c < qtdCavalos; c++) {
+                    html += `<td>${cavalos[c].tempVoltas[v].toFixed(1)} min</td>`;
+                }
+
+                html += `</tr>`;
+            }
+
+            html += `
+                <tr class="linha-total">
+                    <td><b>Total</b></td>
+            `;
+
+            for (let c = 0; c < qtdCavalos; c++) {
+                html += `<td><b>${cavalos[c].total.toFixed(1)} min</b></td>`;
+            }
+
+            html += `
+                    </tr>
+                </table>
+                </div>
+            `;
+
+            // O sinal de += garante que ela vai acumular DEBAIXO do pódio
+            div_msg.innerHTML += html;
         }
 
-        html += `</tr>`;
-    }
-
-    html += `
-        <tr class="linha-total">
-            <td><b>Total</b></td>
-    `;
-
-    for (let c = 0; c < qtdCavalos; c++) {
-        html += `<td><b>${cavalos[c].total.toFixed(1)} min</b></td>`;
-    }
-
-    html += `
-            </tr>
-        </table>
-        </div>
-    `;
-
-    div_msg.innerHTML = html;
-}
-
-       function calcularRanking() {
+        function calcularRanking() {
             function encontrarMenor(excluidos) {
                 let menor = Infinity, idx = -1;
                 cavalos.forEach((c, i) => {
@@ -277,42 +325,46 @@
             for (let p = 0; p < total; p++) {
                 const idx = encontrarMenor(usados);
                 if (idx !== -1) { 
-                    // Salva também a imagem para podermos puxar no pódio
+                    // Salva os dados do cavalo e associa o GIF correto dele
                     ranking.push({ ...cavalos[idx], imagem: imagens[idx] }); 
                     usados.push(idx); 
                 }
             }
 
+            // Monta a estrutura HTML das colunas do pódio
             let podioHTML = `
-                <div style="text-align:center; margin-top:40px; color:white;">
-                    <h2>PÓDIO FINAL</h2>
+                <div style="text-align:center; margin-top:20px; color:white;">
+                    <h2 style="font-size: 24px; letter-spacing: 1px;">PÓDIO FINAL</h2>
                     <div class="podio-container">
             `;
 
+            // DEGRAU 2 (Prata - Esquerda)
             if (ranking[1]) {
                 podioHTML += `
                     <div class="degrau degrau-2">
-                        <img src="${ranking[1].imagem}" alt="Cavalo 2">
+                        <img src="${ranking[1].imagem}" alt="2º Lugar">
                         <p>${ranking[1].nome}</p>
                         <p style="font-size:12px;">${ranking[1].total.toFixed(1)}m</p>
                         <div class="posicao-numero">2º</div>
                     </div>`;
             }
 
+            // DEGRAU 1 (Ouro - Centro)
             if (ranking[0]) {
                 podioHTML += `
                     <div class="degrau degrau-1">
-                        <img src="${ranking[0].imagem}" alt="Cavalo 1">
+                        <img src="${ranking[0].imagem}" alt="1º Lugar">
                         <p>${ranking[0].nome}</p>
                         <p style="font-size:12px;">${ranking[0].total.toFixed(1)}m</p>
                         <div class="posicao-numero">1º</div>
                     </div>`;
             }
 
+            // DEGRAU 3 (Bronze - Direita)
             if (ranking[2]) {
                 podioHTML += `
                     <div class="degrau degrau-3">
-                        <img src="${ranking[2].imagem}" alt="Cavalo 3">
+                        <img src="${ranking[2].imagem}" alt="3º Lugar">
                         <p>${ranking[2].nome}</p>
                         <p style="font-size:12px;">${ranking[2].total.toFixed(1)}m</p>
                         <div class="posicao-numero">3º</div>
@@ -323,7 +375,8 @@
                     </div>
                 </div>`;
 
-            div_msg.innerHTML += podioHTML;
+            // Coloca o pódio na div_msg
+            div_msg.innerHTML = podioHTML;
         }
     </script>
 </body>
