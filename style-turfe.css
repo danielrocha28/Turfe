@@ -141,71 +141,56 @@
        font-weight: bold;
    }
 
-   .podio-container {
+  .podio-container {
         display: flex;
         justify-content: center;
-        align-items: flex-end; 
+        align-items: flex-end; /* Alinha os degraus pela base */
         gap: 15px;
-        margin-top: 10px;
-        height: 350px; 
-        overflow: hidden; 
+        margin-top: 20px;
+        height: 350px; /* Aumentado para o pódio maior caber dentro */
+        overflow: hidden;
     }
+
     .degrau {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 120px;
-        color: white;
+        width: 140px;
+        padding: 15px 5px 5px 5px;
+        box-sizing: border-box; /* Garante que o padding não quebre a altura */
         font-weight: bold;
         text-align: center;
-        border-radius: 8px 8px 0 0;
+        border-radius: 12px 12px 0 0;
         animation: subirPodio 1.5s ease-out forwards; 
-        transform: translateY(100%);
+        transform: translateY(100%); 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
     }
 
-    .degrau p { margin: 5px 0; font-size: 20px; text-shadow: 1px 1px 2px black; }
-    .degrau img { width: 80px; margin-bottom: 5px; }
+    .degrau p { 
+        margin: 4px 0; 
+        font-size: 16px; 
+    }
+    
+    .degrau img { 
+        width: 75px; 
+        height: auto;
+        margin-bottom: 5px; 
+    }
 
-    .degrau-1 { height: 180px; background-color: #FFD700; animation-delay: 4.5s; } 
-    .degrau-2 { height: 130px; background-color: #C0C0C0; animation-delay: 3.0s; } 
-    .degrau-3 { height: 110px; background-color: #CD7F32; animation-delay: 1.0s; }  
+    /* Cores ajustadas e alturas maiores para caber todo o texto livremente */
+    .degrau-1 { height: 280px; background: #FFD700; color: #111 !important; animation-delay: 1.2s; } /* Texto escuro para contrastar com o Ouro */
+    .degrau-2 { height: 220px; background: #C0C0C0; color: #111 !important; animation-delay: 0.6s; } /* Texto escuro para contrastar com a Prata */
+    .degrau-3 { height: 170px; background: #CD7F32; color: #FFF !important; animation-delay: 0.1s; } /* Texto branco para o Bronze */
 
-    .posicao-numero { font-size: 45px; margin-top: auto; padding-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
-
+    .posicao-numero { 
+        font-size: 38px; 
+        margin-top: auto; /* Empurra o número fixo para a base do degrau */
+        padding-bottom: 10px;
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
 
     @keyframes subirPodio {
         from { transform: translateY(100%); }
         to { transform: translateY(0); }
     }
-
-
-.tabela-resultados {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.tabela-resultados th {
-    background: #004e9b;
-    color: white;
-    padding: 15px;
-    font-size: 18px;
-}
-
-.tabela-resultados td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.tabela-resultados tr:nth-child(even) {
-    background-color: #f5f8fc;
-}
-
-.linha-total {
-    background-color: #022a52 !important;
-    color: white;
-    font-size: 18px;
-}
